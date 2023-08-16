@@ -12,7 +12,7 @@ const Slide = () => {
       <h1 className="second_s">Collection</h1>
       <div className="lineee"></div>
       <h5>on sale</h5>
-      <Image className="img0" src={image0} alt='img' width={300} />
+      <Image className="img0" loading='lazy' src={image0} alt='img' width={300} />
       <h3 className="img0text"> 1.formals and suits</h3>
       <Image className="img1" src={img1} alt='img' width={300} />
       <h3 className="img1text"> 2.hoodies </h3>

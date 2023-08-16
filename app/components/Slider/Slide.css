@@ -1,8 +1,8 @@
 .continer_slider{
     width:100vw;
-    height: 100%;
+    height: 80vh;
     /* background-color: red; */
-    /* overflow: hidden; */
+    overflow-x: hidden;
 }
 .continer_slider .first_s{
     z-index: 200;
