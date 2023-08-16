@@ -1,10 +1,13 @@
 'use client'
-import Slider from './components/Slider/page'
+
+// import Slide from "./components/Slider/Slide"
+import Slide1 from "./components/Slider/Slide1"
+
 export default function Home() {
   return (
-   <>
-    <Slider />
-   </>
+   <div className="home">
+    <Slide1 />
+   </div>
   )
 }
  

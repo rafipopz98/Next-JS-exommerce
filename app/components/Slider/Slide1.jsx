@@ -1,20 +1,39 @@
-'use client'
-import React from 'react'
-import './Slide1.css'
+'use-client'
+import React,{useState} from "react";
+import "./Slider.css";
+import Slide from "./Slide";
+import WestOutlinedIcon from "@mui/icons-material/WestOutlined";
+import EastOutlinedIcon from "@mui/icons-material/EastOutlined";
+import Slide3 from "./Slide3";
+import Slide2 from "./page"; 
 
-const Slide = () => {
+const Slide1 = () => {
+
+  const [currentSlide,setCurrentSlide]=useState(0)
+
+  const prevSlide=()=>{
+    setCurrentSlide(currentSlide===0? 2:(prev)=>prev-1)
+  }
+  const nextSlide=()=>{
+    setCurrentSlide(currentSlide===2?0:(prev)=>prev+1)
+  }
   return (
-    <div className='slider1'>
-    <h1>Exclusive</h1>
-    <div className='line1_grey1'></div>
-    <h1>Collection</h1>
-    <div className='line_slider1'></div>
-    <h4>on sale</h4>
-    <div className='line2_grey1'></div>
-    <img src='/image1.jpeg' alt="image" />
-    <img src='/image3.jpeg' alt="image" />
+    <div className="slider_slider">
+      <div className="slide_container" style={{transform: `translateX(-${currentSlide*100}vw)`}}>
+        <Slide  />
+        <Slide3 />
+        <Slide2 />
+      </div>
+      <div className="icons">
+        <div className="icon" onClick={prevSlide}>
+          <WestOutlinedIcon />
+        </div>
+        <div className="icon" onClick={nextSlide}>
+          <EastOutlinedIcon />
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Slide
+export default Slide1;
