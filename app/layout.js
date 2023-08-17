@@ -13,6 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <html  lang="en"> 
       <body  className={nunito.className}>
+      {/* <body> */}
       <Navbar />
       {children}
       <Footer /> 

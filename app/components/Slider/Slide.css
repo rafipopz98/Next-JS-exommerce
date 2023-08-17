@@ -39,7 +39,7 @@
     top: 3rem;
     left: 29rem;
 }
-.img0{
+.img0,.img9,.img10{
     position: relative;
     top: -12rem;
     object-fit: cover;
@@ -72,8 +72,8 @@
 }
 .img2text{
     position: relative;
-    top:-12rem;
-    left: 8.5rem;
+    top:-16rem;
+    left: 10rem;
     text-transform: uppercase;
     font-weight: 900;
     font-size: 1.4rem;
@@ -83,25 +83,38 @@
     left: 65rem;
 }
 .img3text{
-    top: -40rem;
+    top: -45rem;
     left: 71rem;
     font-weight: 900;
 }
 .img4text{
-    top:-12rem;
+    top:-16rem;
     left: 13rem;
 }
 .img5{
-    top: -39rem;
+    top: -43rem;
     left: 61rem;
     height: 400px;
 }
 .img5text{
-    top: -39rem;
+    top: -43rem;
     left: 65rem;
     font-weight: 900;
 }
 .img3{
-    top: -40rem;
+    top: -45rem;
     left: 65rem;
+}
+.img9,.img10{
+    top:-16rem;
+    left: 7rem;
+}
+.img1{
+    top: -45rem;
+    left: 65rem;
+}
+.img1text{
+    top: -45rem;
+    left: 70rem;
+    /* color: red; */
 }

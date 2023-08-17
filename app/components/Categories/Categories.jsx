@@ -9,7 +9,7 @@ import image5 from '../../../public/image5.jpeg'
 import Link from "next/link";
 import Image from "next/image";
 const Categories = () => {
-  return (
+  return ( 
     <div className="categories">
       <div className="col">
         <div className="row">

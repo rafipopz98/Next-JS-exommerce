@@ -1,8 +1,13 @@
+'use client'
 import Link from "next/link";
-import React from "react";
+import React,{useState} from "react";
 import ShoppingCartOutlinedIcon  from "@mui/icons-material/ShoppingCartOutlined";
 import './Navbar.css'
+import Cart from "../Cart/Cart";
 const Navbar = () => {
+
+  const[open,setOpen]=useState(false)
+
   return (
     <div className="navbar">
       <div className="left">
@@ -26,15 +31,17 @@ const Navbar = () => {
         <div className="item">
           <Link href="/products/pant">Pant</Link>
         </div>
-        <div className="cartIcon">
-        <Link href='/cart'>
+        <div className="cartIcon" onClick={()=>setOpen(!open)}>
+        {/* <Link > */}
           <ShoppingCartOutlinedIcon />
           <span className="number">2</span>
-        </Link>
+        {/* </Link> */}
         </div>
-      </div> 
+      </div>
+      {open&&<Cart/>} 
     </div>
   );
 };
 
 export default Navbar;
+ 

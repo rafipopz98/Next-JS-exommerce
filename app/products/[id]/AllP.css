@@ -1,0 +1,36 @@
+.products_all{
+    padding: 30px 50px;
+    display: flex;
+}
+.left_products{
+    flex: 1;
+    height: 100%;
+    top: 50px;
+    position: sticky;
+}
+.left_products .filterItems{
+    margin-bottom: 30px;
+}
+.left_products .filterItems h2{
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+.left_products .filterItems .inputItem{
+    margin-bottom: 10px;
+}
+.left_products .filterItems .inputItem label{
+    margin-left: 10px;
+}
+.right_products{
+    flex: 3;
+} 
+.right_products .catImg{
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 50px;
+}
+.inputItem span{
+    margin: 0 10px;
+    font-weight: 400;
+}
