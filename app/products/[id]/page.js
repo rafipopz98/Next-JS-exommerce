@@ -1,9 +1,9 @@
-import React from 'react'
-
-const Project = () => {
+'use client'
+const Products =()=>{
   return (
-    <div>page 1</div>
+    <div>
+      Products
+    </div>
   )
 }
-
-export default Project
+export default Products;

@@ -1,8 +1,10 @@
 .continer_slider{
     width:100vw;
-    height: 80vh;
+    /* max-height:80vh ; */
+    height: fit-content;
     /* background-color: red; */
     overflow-x: hidden;
+    /* z-index: 10000000000; */
 }
 .continer_slider .first_s{
     z-index: 200;
@@ -81,7 +83,7 @@
     left: 65rem;
 }
 .img3text{
-    top: -36rem;
+    top: -40rem;
     left: 71rem;
     font-weight: 900;
 }
@@ -98,4 +100,8 @@
     top: -39rem;
     left: 65rem;
     font-weight: 900;
+}
+.img3{
+    top: -40rem;
+    left: 65rem;
 }

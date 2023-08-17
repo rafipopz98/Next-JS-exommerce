@@ -1,15 +1,16 @@
 .slide_slide{
-    height: 60vh;
+    /* max-height: 100vh; */
+    /* position: fixed; */
     /* height: calc(100vh-80px); */
     width: 100vw;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     position: relative;
 }
 .slide_container{
     width: 300vw;
     overflow-y: hidden;
     overflow-y: none;
-    height: 100%;
+    max-height: 80vh;
     display: flex;
 }
 .icons{
@@ -36,6 +37,7 @@
     background-color: #777;
 }
 body{
+    min-height:100vh ;
     width: 100vw;
     overflow-x: hidden;
 }
