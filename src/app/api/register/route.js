@@ -1,5 +1,6 @@
 import connectionDb from "@/src/database";
 import User from "@/src/models/user";
+import {hash} from "bcrypt";
 import Joi from "joi";
 import { NextResponse } from "next/server";
 
@@ -29,7 +30,7 @@ export async function POST(req) {
   if (error) {
     return NextResponse.json({
       success: false,
-      message: error.details[0],
+      message: ` errrrorrrrr ${error.details[0]}`,
     });
   }
 
@@ -57,7 +58,7 @@ export async function POST(req) {
         name,
         email,
         password: hashPassword,
-      });
+      }); 
       //show success msg
       if (newUser) {
         return NextResponse({
@@ -70,7 +71,7 @@ export async function POST(req) {
     console.log(`Error in user registration `);
     return NextResponse.json({
       success: false,
-      message: `Something wen wrong || please try again `,
+      message: `the error is ${error} `,
     });
   }
 }

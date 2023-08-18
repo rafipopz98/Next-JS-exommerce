@@ -1,48 +1,93 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import "./Register.css";
 import Link from "next/link";
+import { registerNewUser } from "@/src/services/register";
 const page = () => {
+  const [formData, setFormData] = useState({
+    name: "", 
+    email: "",
+    password: "",
+  });
+  let name, value;
+ 
+  const handleInputs = (e) => {
+    name = e.target.name;
+    value = e.target.value;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+  console.log(formData);
 
-
-  const initialformData={
-    name:'',
-    email:'',
-    password:''
+  function isValid() {
+    return formData &&
+      formData.name &&
+      formData.name.trim() !== "" &&
+      formData.email &&
+      formData.email.trim() !== "" &&
+      formData.password &&
+      formData.password.trim() !== ""
+      ? true
+      : false;
   }
+  console.log(isValid());
 
-  const[formData,setFormData]=useState(initialformData)
-
-  console.log(formData)
-
+  async function handleRegisterOnSubmit ()  {
+    const data = await registerNewUser(formData);
+    console.log(data);
+  };
   return (
     <div className="register">
       <div className="register_container">
-        <h1>Account Register</h1>
+        <h1>Account Register</h1> 
         <div className="input_container">
-          <label htmlFor="username">Username</label>
-          <input type="text" id='username' value={formData.name} placeholder="enter username" onChange={(e)=>{
-            setFormData({
-              ...formData,[id]:e.target.value
-            })
-          }} />
+          <label htmlFor="name">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="name"
+            value={formData.name}
+            placeholder="enter username"
+            onChange={handleInputs}
+          />
         </div>
         <div className="input_container">
           <label htmlFor="email">Email</label>
-          <input type="email" id="email" value={initialformData.email} placeholder="enter email"  />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            placeholder="enter email"
+            onChange={handleInputs}
+          />
         </div>
         <div className="input_container">
-          <label htmlFor="password">Password</label> 
-          <input type="password" id="password" value={initialformData.password}  placeholder="enter password(minimum 6)" />
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            placeholder="enter password(minimum 6)"
+            onChange={handleInputs}
+          />
         </div>
         <div className="register_btn">
-          <button>Register</button>
+          <button disabled={!isValid()} onClick={handleRegisterOnSubmit}>
+            Register
+          </button>
           <div className="haveAcc">
-            <p>Already have an account? <span>
-                <Link className="link_register" href='/login' >
-                register
+            <p>
+              Already have an account?{" "}
+              <span>
+                <Link className="link_register" href="/login">
+                  register
                 </Link>
-            </span></p>
+              </span>
+            </p>
           </div>
         </div>
       </div>

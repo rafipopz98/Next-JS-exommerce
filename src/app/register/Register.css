@@ -56,6 +56,7 @@ font-weight: 400;
     align-content: center;
     /* margin: auto; */
     align-items: center;
+    cursor: pointer;
     justify-content: center;
     color: white;
     font-weight: 400;
@@ -64,6 +65,12 @@ font-weight: 400;
     border: none;
     border-radius: 2px;
 }
+.register_container .register_btn button:disabled,
+.register_container .register_btn button[disabled]{
+  opacity: 0.5; 
+  cursor: not-allowed;
+}
+
 .register_container .haveAcc{
     margin-top: 10px;
 }
