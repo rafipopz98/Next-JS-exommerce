@@ -1,16 +1,21 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Register.css";
 import Link from "next/link";
+import GlobalContext from "../../context/index";
 import { registerNewUser } from "@/src/services/register";
+import Notification from "@/src/components/Notification";
+import LoaderCompo from "@/src/components/Loader/LoaderCom/page";
+import { toast } from "react-toastify";
 const page = () => {
+  const { commonLoader, setCommonLoader } = useContext(GlobalContext);
   const [formData, setFormData] = useState({
-    name: "", 
+    name: "",
     email: "",
     password: "",
   });
   let name, value;
- 
+
   const handleInputs = (e) => {
     name = e.target.name;
     value = e.target.value;
@@ -34,14 +39,36 @@ const page = () => {
   }
   console.log(isValid());
 
-  async function handleRegisterOnSubmit ()  {
+  async function handleRegisterOnSubmit() {
+    setCommonLoader(true);
     const data = await registerNewUser(formData);
+    if (data.success) {
+      toast.success(data.message,{
+        position:toast.POSITION.TOP_RIGHT
+      })
+      setCommonLoader(false);
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+      });
+    } else {
+      toast.error(data.message,{
+        position:toast.POSITION.TOP_RIGHT
+      })
+      setCommonLoader(false);
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+      });
+    }
     console.log(data);
-  };
+  }
   return (
     <div className="register">
       <div className="register_container">
-        <h1>Account Register</h1> 
+        <h1>Account Register</h1>
         <div className="input_container">
           <label htmlFor="name">Username</label>
           <input
@@ -77,20 +104,29 @@ const page = () => {
         </div>
         <div className="register_btn">
           <button disabled={!isValid()} onClick={handleRegisterOnSubmit}>
-            Register
+            {commonLoader ? (
+              <LoaderCompo
+                text={"Regetering"}
+                color={white}
+                loading={commonLoader}
+              />
+            ) : (
+              Register
+            )}
           </button>
           <div className="haveAcc">
             <p>
               Already have an account?{" "}
               <span>
                 <Link className="link_register" href="/login">
-                  register
+                  login
                 </Link>
               </span>
             </p>
           </div>
         </div>
       </div>
+      <Notification />
     </div>
   );
 };
