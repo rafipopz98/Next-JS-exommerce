@@ -1,0 +1,52 @@
+*{
+    margin:0;
+    padding:0;
+    text-decoration: none;
+    color: #000;
+    box-sizing: border-box;
+}
+.navbar{
+    border-bottom: 1px solid #f0ebec;
+    /* background-color: #f0ebec; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    width:100%;
+    /* z-index: 10000000; */
+    /* position:fixed; */
+}
+.left  h3{ 
+    color: #000;
+    font-size: 2.5vh;
+
+}
+.right{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    
+}
+.right .item{
+    display: flex;
+    color: #777;
+    gap: 15px;cursor: pointer;
+}
+.right  .cartIcon{
+position: relative;
+}
+.right .cartIcon span{
+    flex: 12;
+    width: 20px;
+    height: 20px;
+    border-radius:50% ;
+    background-color: #2879fe;
+    columns: white;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

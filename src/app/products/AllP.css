@@ -1,4 +1,17 @@
+html::-webkit-scrollbar{
+    width: 0.3vw;
+    scroll-behavior: smooth;
+}
+html::-webkit-scrollbar-thumb{
+    background-color: #555;
+    height: 1vh;
+    border-radius: 9px;
+}
+html::-webkit-scrollbar-track{
+    background-color: white;
+}
 .products_all{
+   
     padding: 30px 50px;
     display: flex;
 }
@@ -23,9 +36,12 @@
 }
 .right_products{
     flex: 3;
+    /* gap: 10px; */
+
 } 
 .right_products .catImg{
-    height: 300px;
+
+ height: 300px;
     width: 100%;
     object-fit: cover;
     margin-bottom: 50px;

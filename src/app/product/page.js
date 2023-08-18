@@ -3,8 +3,8 @@ import Image from "next/image";
 import React, { useState } from "react";
 import "./PrdtDtl.css";
 
-import image0 from "../../public/image0.jpeg";
-import image1 from "../../public/image1.jpeg";
+import image0 from "../../../public/image0.jpeg";
+import image1 from "../../../public/image1.jpeg";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BalanceIcon from "@mui/icons-material/Balance";
@@ -27,10 +27,10 @@ const Product = () => {
       <div className="right_prdtDtl">
         <h1>Title</h1>
         <span className="price_dtl">$200</span>
-        <p>
+        <p> 
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus enim
           blanditiis eaque nulla optio dolorem, modi tenetur libero aliquid
-          voluptatum, illo, eum beatae rerum ipsam totam at rem cum repellat!
+          voluptatum, illo, eum beatae rerum ipsam totam at rem cum repellat! 
         </p>
         <div className="quantity_dtl">
           <button
@@ -55,7 +55,7 @@ const Product = () => {
         <div className="info">
           <span>Vendor:polo</span>
           <span>Product-type:t-shirt</span>
-          <span>Tag:t-shirt,women,top</span>
+          <span>Tag:t-shirt,women,top</span> 
         </div>
         <hr />
         <div className="info">

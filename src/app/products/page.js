@@ -2,7 +2,8 @@
 import Image from 'next/image';
 import {useParams} from 'next/navigation'
 import image5 from '../../../public/image5.jpeg'
-import List from '@/app/components/List/List';
+// import image5 from '../../public'
+import List from '../../components/List/List';
 import { useState } from 'react';
 import './AllP.css'
 const Products = () => {

@@ -1,8 +1,8 @@
 'use client'
 
-import Featured from "./components/FeaturedProducts/Featured"
-import Slide1 from "./components/Slider/Slide1"
-import Categories from "./components/Categories/Categories"
+import Featured from "../components/FeaturedProducts/Featured"
+import Slide1 from "../components/Slider/Slide1"
+import Categories from "../components/Categories/Categories"
 
 export default function Home() {
   return (
