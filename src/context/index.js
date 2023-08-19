@@ -1,7 +1,9 @@
 'use client'
 
-import {createContext,useContext,useState} from 'react'
-const GlobalContext=createContext(null)
+import {createContext,useState} from 'react'
+
+export const GlobalContext=createContext(null)
+
 export default function GlobalState({children}){
     const [commonLoader,setCommonLoader]=useState(false)
     return(

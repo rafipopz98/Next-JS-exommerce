@@ -30,7 +30,7 @@ export async function POST(req) {
   if (error) {
     return NextResponse.json({
       success: false,
-      message: error.details[0].message,
+      message: ` here ${error.details[0].message}`,
     });
   }
 
@@ -38,6 +38,7 @@ export async function POST(req) {
 
   try {
     //check whether user exist or not
+    console.log(email)
 
     const isUserExist = await User.findOne({ email });
 
@@ -61,17 +62,20 @@ export async function POST(req) {
       }); 
       //show success msg
       if (newUser) {
+        console.log("if ")
         return NextResponse({
           success: true,
           message: `successfully registered `,
         });
+      }else{
+        console.log("else")
       }
     }
-  } catch (error) {
-    console.log(`Error in user registration `);
+  } catch(error){
+    console.log(`Error in user registration  ${error} `);
     return NextResponse.json({
       success: false,
-      message: `the error is ${error} `,
+      message: `the error is  ${error} `,
     });
   }
 }

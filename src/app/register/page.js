@@ -2,18 +2,20 @@
 import React, { useContext, useState } from "react";
 import "./Register.css";
 import Link from "next/link";
-import GlobalContext from "../../context/index";
+// import GlobalContext from "../../context/index";
 import { registerNewUser } from "@/src/services/register";
 import Notification from "@/src/components/Notification";
 import LoaderCompo from "@/src/components/Loader/LoaderCom/page";
 import { toast } from "react-toastify";
+import { GlobalContext } from "@/src/context";
+// import GlobalState from "../../context/index";
 const page = () => {
-  const { commonLoader, setCommonLoader } = useContext(GlobalContext);
+  const {commonLoader, setCommonLoader } = useContext(GlobalContext);
   const [formData, setFormData] = useState({
-    name: "",
+    name: "", 
     email: "",
     password: "",
-  });
+  }); 
   let name, value;
 
   const handleInputs = (e) => {
@@ -107,11 +109,11 @@ const page = () => {
             {commonLoader ? (
               <LoaderCompo
                 text={"Regetering"}
-                color={white}
+                color={'white'}
                 loading={commonLoader}
               />
             ) : (
-              Register
+              'Register'
             )}
           </button>
           <div className="haveAcc">
@@ -127,7 +129,7 @@ const page = () => {
         </div>
       </div>
       <Notification />
-    </div>
+    </div>    
   );
 };
 

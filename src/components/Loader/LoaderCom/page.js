@@ -8,10 +8,10 @@ export default function LoaderCompo ({ text, color, loading, size }) {
       {text}
       <PulseLoader
         color={color}
-        loading={loading}
-        size={size || 10}
+        loading={loading}   
+        size={size || 10} 
         data-testid="loader"
       />
-    </span>
+    </span> 
   );
 }
