@@ -1,4 +1,4 @@
-import connectionDb from "@/src/database";
+import {connectionDb} from "@/src/database";
 import User from "@/src/models/user";
 import {hash} from "bcrypt";
 import Joi from "joi";
@@ -63,7 +63,7 @@ export async function POST(req) {
       //show success msg
       if (newUser) {
         console.log("if ")
-        return NextResponse({
+        return NextResponse.json({
           success: true,
           message: `successfully registered `,
         });

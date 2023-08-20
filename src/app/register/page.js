@@ -12,14 +12,14 @@ import { GlobalContext } from "@/src/context";
 const page = () => {
   const {commonLoader, setCommonLoader } = useContext(GlobalContext);
   const [formData, setFormData] = useState({
-    name: "", 
+    name: "",   
     email: "",
     password: "",
-  }); 
+  });  
   let name, value;
 
   const handleInputs = (e) => {
-    name = e.target.name;
+    name = e.target.name; 
     value = e.target.value;
     setFormData({
       ...formData,
@@ -29,12 +29,12 @@ const page = () => {
   console.log(formData);
 
   function isValid() {
-    return formData &&
+    return formData && 
       formData.name &&
       formData.name.trim() !== "" &&
       formData.email &&
       formData.email.trim() !== "" &&
-      formData.password &&
+      formData.password && 
       formData.password.trim() !== ""
       ? true
       : false;
@@ -45,7 +45,7 @@ const page = () => {
     setCommonLoader(true);
     const data = await registerNewUser(formData);
     if (data.success) {
-      toast.success(data.message,{
+      toast.success(data.message,{ 
         position:toast.POSITION.TOP_RIGHT
       })
       setCommonLoader(false);

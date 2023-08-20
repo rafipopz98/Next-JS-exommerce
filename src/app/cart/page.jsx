@@ -19,8 +19,11 @@ const Cart = () => {
       isNew: true,
       oldPrice: 19,
       price: 20,
+      quantity,
     },
     {
+
+
       id: 2,
       img1: image1,
       // img2:image3,
@@ -30,6 +33,7 @@ const Cart = () => {
       isNew: true,
       oldPrice: 15,
       price: 13,
+       quantity,
     },
   ];
 
@@ -52,7 +56,7 @@ const Cart = () => {
                 >
                   -
                 </button>
-                {quantity}
+                {item.quantity}
                 <button onClick={() => setQuantity((prev) => prev + 1)}>
                   +
                 </button>
@@ -65,11 +69,11 @@ const Cart = () => {
         ))}
       </div>
       <div className="cart_right">
-        <h2>Cart Totals</h2>
+        <h2>Cart Totals</h2> 
         <div className="subtotal_cart">
           {data?.map((item) => (
-            <div >
-               <h1>{item.title}    ${item.price}</h1>
+            <div > 
+               {/* <h1 ><span style={{width:'350em'}}>{item.title} </span>   ${item.price}</h1> */}
               
             </div>
           ))}

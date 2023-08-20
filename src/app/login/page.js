@@ -1,39 +1,63 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import "./login.css";
 import Link from "next/link";
 const page = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  let name,value;
 
- 
+  const inputHandler = (e) => {
+    name = e.target.name; 
+    value = e.target.value;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
+  function isValid() {
+    return formData && 
+      formData.email &&
+      formData.email.trim() !== "" &&
+      formData.password && 
+      formData.password.trim() !== ""
+      ? true
+      : false;
+  }
+  console.log(isValid())
+
+  console.log(formData)
   return (
     <div className="register">
-      <div className="register_container">
+      <div className="register_container"> 
         <h1>Account Login</h1>
         <div className="input_container">
-          <label htmlFor="username">Email</label>
-          <input type="email" />
+          <label htmlFor="email">Email</label>
+          <input type="email" id="email" value={formData.email} name="email" placeholder="enter email" onChange={inputHandler}/>
         </div>
         <div className="input_container">
-          <label htmlFor="username">Password</label>
-          <input type="password" />
+          <label htmlFor="password">Password</label>
+          <input type="password" id="password" value={formData.password} name='password' placeholder="enter password" onChange={inputHandler}/>
           <p className="p_login">
-          <Link href='forgotpassword'>
-          forgot password
-          </Link>
+            <Link href="forgotpassword">forgot password</Link>
           </p>
           <div className="haveAcc">
-            <p>Don't have an account? <span>
-                <Link className="link_register" href='/register' >
-                signup
+            <p>
+              Don't have an account?{" "}
+              <span>
+                <Link className="link_register" href="/register">
+                  signup
                 </Link>
-            </span></p>
+              </span>
+            </p>
           </div>
         </div>
-        
-        <div className="register_btn">
-          <button>login</button>
-          
+
+        <div className="login_btn">
+          <button disabled={!isValid()}>login</button>
         </div>
       </div>
     </div>

@@ -12,6 +12,6 @@ export default function Home() {
     <Categories />
     <Featured heading="Sale"/>
    </div> 
-  )
+  ) 
 }
  

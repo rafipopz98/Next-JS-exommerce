@@ -44,13 +44,13 @@ padding: 10px 10px;
 font-size: 15px;
 font-weight: 400;
 }
-.register_container .register_btn{
+.register_container .register_btn, .login_btn{
     display: flex;
     align-items: center;
     justify-content: center;    
     flex-direction: column;
 }
-.register_container .register_btn button{
+.register_container .register_btn button, .login_btn button{
     background-color: black;
     display: flex;
     align-content: center;
@@ -82,4 +82,8 @@ font-weight: 400;
 }
 .haveAcc p{
     color: #111;
+}
+.login_btn button:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
 }
