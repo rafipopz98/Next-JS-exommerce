@@ -2,19 +2,20 @@ import { connectionDb } from "@/src/database";
 import User from "@/src/models/user";
 import { compare } from "bcrypt";
 import Joi from "joi";
-import { jwt } from "jsonwebtoken";
+// import { jwt } from "jsonwebtoken";
+import jwt from 'jsonwebtoken'
 import { NextResponse } from "next/server";
 
 const schema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().required(),
-});
+}); 
 
 export const dynamic = "force-dynmaic";
 
 export async function POST(req) {
   await connectionDb();
-  const { email, password } = await req.Json();
+  const { email, password } = await req.json();
 
   const { error } = schema.validate({ email, password });
   if (error) {
@@ -40,6 +41,7 @@ export async function POST(req) {
         });
       }
     }
+    console.log("near sign")
     const token = jwt.sign(
       {
         id: checkUser._id,
@@ -48,7 +50,7 @@ export async function POST(req) {
       "default_secret_key",
       { expiresIn: "1d" }
     );
-
+    console.log("after sign in")
     const finalResult = {
       token,
       user: {
@@ -57,12 +59,14 @@ export async function POST(req) {
         _id: checkUser._id,
       },
     };
+    console.log("done")
     return NextResponse.json({
       success: true,
       message: `successfully logged in`,
       finalResult,
-    });
+    }); 
   } catch (e) {
+    console.log("some error")
     console.log(`the error is ${e}`);
     return NextResponse.json({
       success: false,

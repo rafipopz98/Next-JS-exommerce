@@ -1,17 +1,15 @@
-import { NextResponse } from "next/server";
-
 export const login = async (formData) => {
   try {
-    const response = await fetch("/api/register", {
+    const responses = await fetch("/api/login", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(formData),
     });
-    const finalData = response.json();
+    const finalData = responses.json();
     return finalData;
   } catch (e) {
     console.log(`the errrror ${e}`);
-  }
+  } 
 };

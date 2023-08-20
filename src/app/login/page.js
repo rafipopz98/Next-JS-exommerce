@@ -1,8 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./login.css";
 import Link from "next/link";
+import { GlobalContext } from "@/src/context";
+import { login } from "@/src/services/login";
+import { toast } from "react-toastify";
 const page = () => {
+  const {commonLoader, setCommonLoader } = useContext(GlobalContext);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -10,11 +14,12 @@ const page = () => {
   let name,value;
 
   const inputHandler = (e) => {
+    console.log("gg")
     name = e.target.name; 
     value = e.target.value;
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: value, 
     });
   };
 
@@ -28,6 +33,35 @@ const page = () => {
       : false;
   }
   console.log(isValid())
+
+  async function loginSubmit(){
+    console.log("login click button")
+    // setCommonLoader(true)
+    const data=await login(formData)
+    console.log(data)
+  //   if(data.success){
+  //     console.log("success")
+  //     toast.success(data.message,{
+  //       position:toast.POSITION.TOP_RIGHT
+  //     })
+    
+  //   setCommonLoader(false) 
+  //   setFormData({
+  //     email:'',
+  //     password:'',
+  //   })
+  // }else{
+  //   console.log("error")
+  //   toast.error(data.message,{
+  //     position:toast.POSITION.TOP_RIGHT
+  //   })
+  //   setCommonLoader(false)
+  //   setFormData({
+  //     email:'',
+  //     password:'',
+  //   })
+  // }
+  } 
 
   console.log(formData)
   return (
@@ -57,7 +91,9 @@ const page = () => {
         </div>
 
         <div className="login_btn">
-          <button disabled={!isValid()}>login</button>
+          <button disabled={!isValid()}
+          onClick={loginSubmit}
+          >login</button>
         </div>
       </div>
     </div>

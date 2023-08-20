@@ -19,7 +19,7 @@ const Cart = () => {
       isNew: true,
       oldPrice: 19,
       price: 20,
-      quantity,
+
     },
     {
 
@@ -33,7 +33,6 @@ const Cart = () => {
       isNew: true,
       oldPrice: 15,
       price: 13,
-       quantity,
     },
   ];
 
@@ -56,7 +55,7 @@ const Cart = () => {
                 >
                   -
                 </button>
-                {item.quantity}
+                {quantity}
                 <button onClick={() => setQuantity((prev) => prev + 1)}>
                   +
                 </button>

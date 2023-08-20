@@ -8,7 +8,7 @@ import Notification from "@/src/components/Notification";
 import LoaderCompo from "@/src/components/Loader/LoaderCom/page";
 import { toast } from "react-toastify";
 import { GlobalContext } from "@/src/context";
-// import GlobalState from "../../context/index";
+// import GlobalState from "../../context/index"; 
 const page = () => {
   const {commonLoader, setCommonLoader } = useContext(GlobalContext);
   const [formData, setFormData] = useState({
