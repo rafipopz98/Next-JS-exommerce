@@ -5,6 +5,8 @@ import Link from "next/link";
 import { GlobalContext } from "@/src/context";
 import { login } from "@/src/services/login";
 import { toast } from "react-toastify";
+import LoaderCompo from "@/src/components/Loader/LoaderCom/page";
+import Notification from "@/src/components/Notification";
 const page = () => {
   const {commonLoader, setCommonLoader } = useContext(GlobalContext);
   const [formData, setFormData] = useState({
@@ -39,28 +41,28 @@ const page = () => {
     // setCommonLoader(true)
     const data=await login(formData)
     console.log(data)
-  //   if(data.success){
-  //     console.log("success")
-  //     toast.success(data.message,{
-  //       position:toast.POSITION.TOP_RIGHT
-  //     })
+    if(data.success){
+      console.log("success")
+      toast.success(data.message,{
+        position:toast.POSITION.TOP_RIGHT
+      })
     
-  //   setCommonLoader(false) 
-  //   setFormData({
-  //     email:'',
-  //     password:'',
-  //   })
-  // }else{
-  //   console.log("error")
-  //   toast.error(data.message,{
-  //     position:toast.POSITION.TOP_RIGHT
-  //   })
-  //   setCommonLoader(false)
-  //   setFormData({
-  //     email:'',
-  //     password:'',
-  //   })
-  // }
+    setCommonLoader(false) 
+    setFormData({
+      email:'',
+      password:'',
+    })
+  }else{
+    console.log("error")
+    toast.error(data.message,{
+      position:toast.POSITION.TOP_RIGHT
+    })
+    setCommonLoader(false)
+    setFormData({
+      email:'',
+      password:'',
+    })
+  }
   } 
 
   console.log(formData)
@@ -93,9 +95,20 @@ const page = () => {
         <div className="login_btn">
           <button disabled={!isValid()}
           onClick={loginSubmit}
-          >login</button>
+          >
+          {commonLoader ? (
+              <LoaderCompo
+                text={"please wait"}
+                color={'white'}
+                loading={commonLoader}
+              />
+            ) : (
+              'Login'
+            )}
+          </button>
         </div>
       </div>
+      <Notification />
     </div>
   );
 };
