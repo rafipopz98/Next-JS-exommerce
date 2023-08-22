@@ -6,7 +6,10 @@ import mongoose from 'mongoose'
 // }
 const connectionDb=async()=>{
 
-    const DbUrl='mongodb+srv://root:root@ecommerce.9g4mnlg.mongodb.net/'
+    console.log("hii")
+
+    // const DbUrl='mongodb+srv://root:root@ecommerce.9g4mnlg.mongodb.net/'
+    const DbUrl='mongodb://localhost:27017/users'
     mongoose.connect(DbUrl).then(()=>{
         console.log("connected to database")
         return;
@@ -15,4 +18,4 @@ const connectionDb=async()=>{
         return;
     })
 }
- module.exports={connectionDb}
+ module.exports={connectionDb} 

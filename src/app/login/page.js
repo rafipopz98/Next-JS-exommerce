@@ -1,14 +1,22 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./login.css";
 import Link from "next/link";
-import { GlobalContext } from "@/src/context";
+import { GlobalContext } from "@/src/context"; 
 import { login } from "@/src/services/login";
 import { toast } from "react-toastify";
 import LoaderCompo from "@/src/components/Loader/LoaderCom/page";
 import Notification from "@/src/components/Notification";
+
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 const page = () => {
+  const router=useRouter()
   const {commonLoader, setCommonLoader } = useContext(GlobalContext);
+  const {isAuthUser,
+    setIsAuthUser,
+    user,
+    setUser}=useContext(GlobalContext);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -33,7 +41,7 @@ const page = () => {
       formData.password.trim() !== ""
       ? true
       : false;
-  }
+  }  
   console.log(isValid())
 
   async function loginSubmit(){
@@ -41,18 +49,22 @@ const page = () => {
     // setCommonLoader(true)
     const data=await login(formData)
     console.log(data)
-    if(data.success){
+    if(data.success){ 
+      setIsAuthUser(true)
+      setUser(data?.finalData?.user)
       console.log("success")
       toast.success(data.message,{
         position:toast.POSITION.TOP_RIGHT
       })
-    
-    setCommonLoader(false) 
+     setCommonLoader(false) 
     setFormData({
       email:'',
-      password:'',
+      password:'', 
     })
+    Cookies.set('token',data?.finalData?.token)
+    localStorage.setItem('user',data?.finalData?.user)
   }else{
+    setIsAuthUser(false)
     console.log("error")
     toast.error(data.message,{
       position:toast.POSITION.TOP_RIGHT
@@ -64,6 +76,12 @@ const page = () => {
     })
   }
   } 
+
+  useEffect(() => {
+   if(isAuthUser) 
+   router.push('/')
+  }, [isAuthUser])
+  
 
   console.log(formData)
   return (
