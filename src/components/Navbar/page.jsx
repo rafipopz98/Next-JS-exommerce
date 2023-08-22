@@ -9,18 +9,24 @@ import { useRouter } from "next/navigation";
 
 
 const Navbar = () => {
+
   
-const {user,setUser,isAuthUser,setIsAuthUser}=useContext(GlobalContext)
+  
+const {user,setUser,isAuthUser,setIsAuthUser,isAdmin,setIsAdmin}=useContext(GlobalContext)
 const router=useRouter()
 
   const logoutHandler=()=>{
     setIsAuthUser(false)
     setUser(null)
+    console.log("my cookiewsss ",Cookies.get('token'))
     Cookies.remove('token')
+    console.log("my cookiewsss ",Cookies.get('token'))
     localStorage.clear()
     router.push('/login')
+    console.log("loggeedout")
   }
-
+  
+ 
 
   return (
     <div className="navbar">
@@ -28,7 +34,7 @@ const router=useRouter()
         <Link href="/">
           <h3>Dummy app</h3>
         </Link>
-      </div>
+      </div> 
 
       {isAuthUser ? (
         <div className="right">
@@ -62,7 +68,7 @@ const router=useRouter()
           </Link>
         </div>
       )}
-      {isAuthUser && user ? <div className="item">adminView</div> : null}
+      {isAuthUser && isAdmin ? <div className="itemu">adminView</div> : null}
     </div>
   );
 };

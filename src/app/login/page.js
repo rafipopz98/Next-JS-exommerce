@@ -16,7 +16,10 @@ const page = () => {
   const {isAuthUser,
     setIsAuthUser,
     user,
-    setUser}=useContext(GlobalContext);
+    setUser,
+  isAdmin,
+  setIsAdmin
+  }=useContext(GlobalContext);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -43,7 +46,7 @@ const page = () => {
       : false;
   }  
   console.log(isValid())
-
+ 
   async function loginSubmit(){
     console.log("login click button")
     // setCommonLoader(true)
@@ -52,6 +55,7 @@ const page = () => {
     if(data.success){ 
       setIsAuthUser(true)
       setUser(data?.finalData?.user)
+      setIsAdmin(data?.finalData?.user?.isAdmin)
       console.log("success")
       toast.success(data.message,{
         position:toast.POSITION.TOP_RIGHT
@@ -62,9 +66,12 @@ const page = () => {
       password:'', 
     })
     Cookies.set('token',data?.finalData?.token)
+   Cookies.set('token',data?.finalData?.isAdmin)
+    console.log("helo konicinwa",Cookies.set('token',data?.finalData?.token))
     localStorage.setItem('user',data?.finalData?.user)
   }else{
     setIsAuthUser(false)
+    // setIsAdmin(data?.finalData?.user?.isAdmin)
     console.log("error")
     toast.error(data.message,{
       position:toast.POSITION.TOP_RIGHT

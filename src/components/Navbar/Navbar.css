@@ -50,3 +50,8 @@ position: relative;
     align-items: center;
     justify-content: center;
 }
+.itemu{
+    padding: 5px 10px;
+    background-color: #2879fe;
+    color: #000;
+}

@@ -37,7 +37,7 @@ export async function POST(req) {
       if (!checkPassword) {
         return NextResponse.json({
           success: false,
-          message: `password or email doesnot match`,
+          message: `password or email doesnot match`, 
         });
       }
     }
@@ -46,25 +46,31 @@ export async function POST(req) {
       {
         id: checkUser._id,
         email: checkUser?.email,
+        isAdmin:checkUser?.isAdmin,
       },
       "default_secret_key",
       { expiresIn: "1d" }
     );
+    // console.log()
     console.log("after sign in")
-    const finalResult = {
+    const finalData = {
       token,
       user: {
         email: checkUser.email,
         name: checkUser.name,
         _id: checkUser._id,
+        isAdmin:checkUser.isAdmin
       },
     };
+    console.log("final data",finalData)
+    console.log("token")
+    console.log(token)
     console.log("done")
     return NextResponse.json({
       
       success: true,
       message: `successfully logged in`,
-      finalResult,
+      finalData ,
     }); 
   } catch (e) {
     console.log("some error")

@@ -15,6 +15,7 @@ const page = () => {
     name: "",   
     email: "",
     password: "",
+    isAdmin:false
   });  
   let name, value;
 
@@ -53,6 +54,7 @@ const page = () => {
         name: "",
         email: "",
         password: "",
+        isAdmin:false
       });
     } else {
       toast.error(data.message,{
@@ -63,6 +65,7 @@ const page = () => {
         name: "",
         email: "",
         password: "",
+        isAdmin:false
       });
     }
     console.log(data);

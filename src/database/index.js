@@ -8,13 +8,13 @@ const connectionDb=async()=>{
 
     console.log("hii")
 
-    // const DbUrl='mongodb+srv://root:root@ecommerce.9g4mnlg.mongodb.net/'
-    const DbUrl='mongodb://localhost:27017/users'
+    const DbUrl='mongodb+srv://root:root@ecommerce.9g4mnlg.mongodb.net/'
+    // const DbUrl='mongodb://localhost:27017/users'
     mongoose.connect(DbUrl).then(()=>{
         console.log("connected to database")
         return;
     }).catch((e)=>{
-        console.log( `errrorrr ${e.message}`)
+        console.log( `errrorrr ${e.message}`) 
         return;
     })
 }
