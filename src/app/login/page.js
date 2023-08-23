@@ -55,20 +55,24 @@ const page = () => {
     if(data.success){ 
       setIsAuthUser(true)
       setUser(data?.finalData?.user)
-      setIsAdmin(data?.finalData?.user?.isAdmin)
+      setIsAdmin(user?.isAdmin)
       console.log("success")
       toast.success(data.message,{
         position:toast.POSITION.TOP_RIGHT
       })
-     setCommonLoader(false) 
+     setCommonLoader(false)
     setFormData({
       email:'',
       password:'', 
     })
     Cookies.set('token',data?.finalData?.token)
-   Cookies.set('token',data?.finalData?.isAdmin)
+   Cookies.set('role',data?.finalData?.roleAdmin)
+  //  console.log()
     console.log("helo konicinwa",Cookies.set('token',data?.finalData?.token))
     localStorage.setItem('user',data?.finalData?.user)
+    localStorage.setItem('roleLocal',data?.finalData?.user?.roleAdmin)
+    console.log(user)
+    
   }else{
     setIsAuthUser(false)
     // setIsAdmin(data?.finalData?.user?.isAdmin)
@@ -90,7 +94,7 @@ const page = () => {
   }, [isAuthUser])
   
 
-  console.log(formData)
+  console.log("ggggg",formData)
   return (
     <div className="register">
       <div className="register_container"> 

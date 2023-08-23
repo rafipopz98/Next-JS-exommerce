@@ -6,7 +6,7 @@ import mongoose from 'mongoose'
 // }
 const connectionDb=async()=>{
 
-    console.log("hii")
+    console.log("hii outside db")
 
     const DbUrl='mongodb+srv://root:root@ecommerce.9g4mnlg.mongodb.net/'
     // const DbUrl='mongodb://localhost:27017/users'

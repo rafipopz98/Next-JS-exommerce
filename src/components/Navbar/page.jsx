@@ -1,32 +1,28 @@
 "use client";
 import Link from "next/link";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import "./Navbar.css";
 import { GlobalContext } from "@/src/context";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
-
 const Navbar = () => {
-
-  
-  
-const {user,setUser,isAuthUser,setIsAuthUser,isAdmin,setIsAdmin}=useContext(GlobalContext)
-const router=useRouter()
-
-  const logoutHandler=()=>{
-    setIsAuthUser(false)
-    setUser(null)
-    console.log("my cookiewsss ",Cookies.get('token'))
-    Cookies.remove('token')
-    console.log("my cookiewsss ",Cookies.get('token'))
-    localStorage.clear()
-    router.push('/login')
-    console.log("loggeedout")
-  }
-  
- 
+  const { user, setUser, isAuthUser, setIsAuthUser } =useContext(GlobalContext);
+  const router = useRouter();
+const isAdmin=false;
+  const logoutHandler = () => {
+    setIsAuthUser(false);
+    setUser(null);
+    console.log("my cookiewsss ", Cookies.get("token"));
+    Cookies.remove("token");
+    console.log("my cookiewsss ", Cookies.get("token"));
+    localStorage.clear();
+    router.push("/login");
+    console.log("loggeedout");
+  };
+  // const oll=false;
+  console.log(user);
 
   return (
     <div className="navbar">
@@ -34,7 +30,7 @@ const router=useRouter()
         <Link href="/">
           <h3>Dummy app</h3>
         </Link>
-      </div> 
+      </div>
 
       {isAuthUser ? (
         <div className="right">
@@ -56,7 +52,9 @@ const router=useRouter()
               <span className="number">2</span>
             </Link>
           </div>
-          <div onClick={logoutHandler} className="item">Logout</div>
+          <div onClick={logoutHandler} className="item">
+            Logout
+          </div>
         </div>
       ) : (
         <div className="right">
@@ -68,7 +66,7 @@ const router=useRouter()
           </Link>
         </div>
       )}
-      {isAuthUser && isAdmin ? <div className="itemu">adminView</div> : null}
+      {isAuthUser&&isAdmin?(<div className='itemu'>AdminView</div>):null}
     </div>
   );
 };

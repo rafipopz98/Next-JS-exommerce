@@ -9,7 +9,7 @@ const schema = Joi.object({
   name: Joi.string().required(),
   email: Joi.string().email().required(),
   password: Joi.string().min(6).required(),
-  isAdmin:Joi.boolean().required(),
+  roleAdmin:Joi.boolean().required(),
 });
 //4. do this for making static page dynamic
 //it will  disable all caching of fetch
@@ -23,10 +23,10 @@ export async function POST(req) {
   // so as soon as we hit regiser button we need to get the data from front end
   // so first destructure
 
-  const { name, email, password,isAdmin} = await req.json();
+  const { name, email, password,roleAdmin} = await req.json();
   //5.validate the schema
   // 6.there will be chances of getting  error while validating so,
-  const { error } = schema.validate({ name, email, password,isAdmin });
+  const { error } = schema.validate({ name, email, password,roleAdmin });
 // console.log(typeof(isAdmin))
   if (error) {
     return NextResponse.json({
@@ -60,7 +60,7 @@ export async function POST(req) {
         name,
         email,
         password: hashPassword,
-        isAdmin:false
+        roleAdmin:false
       }); 
       //show success msg
       if (newUser) {

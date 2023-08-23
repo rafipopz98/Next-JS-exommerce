@@ -46,7 +46,7 @@ export async function POST(req) {
       {
         id: checkUser._id,
         email: checkUser?.email,
-        isAdmin:checkUser?.isAdmin,
+        roleAdmin:checkUser?.roleAdmin,
       },
       "default_secret_key",
       { expiresIn: "1d" }
@@ -59,7 +59,7 @@ export async function POST(req) {
         email: checkUser.email,
         name: checkUser.name,
         _id: checkUser._id,
-        isAdmin:checkUser.isAdmin
+        roleAdmin:checkUser.roleAdmin
       },
     };
     console.log("final data",finalData)
