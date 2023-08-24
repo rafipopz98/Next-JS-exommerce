@@ -27,7 +27,7 @@ export async function POST(req) {
   //5.validate the schema
   // 6.there will be chances of getting  error while validating so,
   const { error } = schema.validate({ name, email, password,roleAdmin });
-// console.log(typeof(isAdmin))
+// console.log(typeof())
   if (error) {
     return NextResponse.json({
       success: false,
@@ -65,6 +65,7 @@ export async function POST(req) {
       //show success msg
       if (newUser) {
         console.log("if ")
+        console.log(newUser,"new user detail here")
         return NextResponse.json({
           success: true,
           message: `successfully registered `,

@@ -15,15 +15,16 @@ export default function GlobalState({ children }) {
   const [isAdmin, setIsAdmin] = useState();
 
   useEffect(() => {
-    console.log('lol loooook',localStorage.getItem("user"))
-    console.log("role of user lol",Cookies.get('role'))
-
+    // console.log('lol loooook',localStorage.getItem("user"))
+    
     if (Cookies.get("token") !== undefined) {
       setIsAuthUser(true);
       console.log("userrrrrrrrrrrrrrrrrrr",localStorage.getItem("user"))
-      const userData = localStorage.getItem("user") || {};
+      const userData = JSON.parse(localStorage.getItem("user")) || {};
+      
       // const getCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
       setUser(userData);
+      // setIsAdmin(Cookies.get('role'))
       console.log("userData",userData)
 
       console.log("role of user",Cookies.get('role'))

@@ -8,9 +8,8 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
 const Navbar = () => {
-  const { user, setUser, isAuthUser, setIsAuthUser } =useContext(GlobalContext);
+  const { user, setUser, isAuthUser, setIsAuthUser} =useContext(GlobalContext);
   const router = useRouter();
-const isAdmin=false;
   const logoutHandler = () => {
     setIsAuthUser(false);
     setUser(null);
@@ -22,7 +21,7 @@ const isAdmin=false;
     console.log("loggeedout");
   };
   // const oll=false;
-  console.log(user);
+  console.log("hmmmmmmmmmmmmm",user?.roleAdmin ,isAuthUser);
 
   return (
     <div className="navbar">
@@ -66,7 +65,7 @@ const isAdmin=false;
           </Link>
         </div>
       )}
-      {isAuthUser&&isAdmin?(<div className='itemu'>AdminView</div>):null}
+      {isAuthUser&&(user?.roleAdmin) ?(<div className='itemu'>AdminView</div>):null}
     </div>
   );
 };

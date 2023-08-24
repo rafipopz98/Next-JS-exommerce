@@ -17,8 +17,6 @@ const page = () => {
     setIsAuthUser,
     user,
     setUser,
-  isAdmin,
-  setIsAdmin
   }=useContext(GlobalContext);
   const [formData, setFormData] = useState({
     email: "",
@@ -51,11 +49,12 @@ const page = () => {
     console.log("login click button")
     // setCommonLoader(true)
     const data=await login(formData)
-    console.log(data)
+    console.log("form data login",data)
+    // console.log(data)
     if(data.success){ 
       setIsAuthUser(true)
       setUser(data?.finalData?.user)
-      setIsAdmin(user?.isAdmin)
+      // setIsAdmin(data?.finalData?.user?.roleAdmin)
       console.log("success")
       toast.success(data.message,{
         position:toast.POSITION.TOP_RIGHT
@@ -66,11 +65,11 @@ const page = () => {
       password:'', 
     })
     Cookies.set('token',data?.finalData?.token)
-   Cookies.set('role',data?.finalData?.roleAdmin)
+  //  Cookies.set('role',data?.finalData?.user?.roleAdmin)
   //  console.log()
     console.log("helo konicinwa",Cookies.set('token',data?.finalData?.token))
-    localStorage.setItem('user',data?.finalData?.user)
-    localStorage.setItem('roleLocal',data?.finalData?.user?.roleAdmin)
+    localStorage.setItem('user',JSON.stringify(data?.finalData?.user))
+    // localStorage.setItem('roleLocal',data?.finalData?.user?.roleAdmin)
     console.log(user)
     
   }else{
@@ -86,7 +85,9 @@ const page = () => {
       password:'',
     })
   }
-  } 
+  }
+  
+  console.log(isAuthUser,user,"is auth user and user details")
 
   useEffect(() => {
    if(isAuthUser) 
