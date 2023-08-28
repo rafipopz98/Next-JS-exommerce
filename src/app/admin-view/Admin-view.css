@@ -1,0 +1,13 @@
+.navbar_admin {
+    background-color: beige;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px;
+    /* font-size: 20px; */
+    font-weight: 600;
+}
+.navbar_admin h3{
+    cursor: pointer;
+}
+
