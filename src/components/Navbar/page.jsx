@@ -7,6 +7,7 @@ import { GlobalContext } from "@/src/context";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
+
 const Navbar = () => {
   const { user, setUser, isAuthUser, setIsAuthUser} =useContext(GlobalContext);
   const router = useRouter();

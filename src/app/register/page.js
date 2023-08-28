@@ -1,26 +1,32 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Register.css";
+import { useRouter } from "next/navigation";
+
 import Link from "next/link";
 // import GlobalContext from "../../context/index";
 import { registerNewUser } from "@/src/services/register";
 import Notification from "@/src/components/Notification";
-import LoaderCompo from "@/src/components/Loader/LoaderCom/page";
+// import LoaderCompo from "@/src/components/Loader/LoaderCom/page";
 import { toast } from "react-toastify";
 import { GlobalContext } from "@/src/context";
-// import GlobalState from "../../context/index"; 
+import ComponentLevelLoader from "@/src/components/Loader/LoaderCom/page";
+// import { useRouter } from "next/navigation";
+// import GlobalState from "../../context/index";
 const page = () => {
-  const {commonLoader, setCommonLoader } = useContext(GlobalContext);
+  const router = useRouter();
+  const { pageLevelLoader, setPageLevelLoader,isAuthUser } = useContext(GlobalContext);
   const [formData, setFormData] = useState({
-    name: "",   
+    name: "",
+    
     email: "",
     password: "",
-    roleAdmin:false
-  });  
+    roleAdmin: false,
+  });
   let name, value;
 
   const handleInputs = (e) => {
-    name = e.target.name; 
+    name = e.target.name;
     value = e.target.value;
     setFormData({
       ...formData,
@@ -30,12 +36,12 @@ const page = () => {
   console.log(formData);
 
   function isValid() {
-    return formData && 
+    return formData &&
       formData.name &&
       formData.name.trim() !== "" &&
       formData.email &&
       formData.email.trim() !== "" &&
-      formData.password && 
+      formData.password &&
       formData.password.trim() !== ""
       ? true
       : false;
@@ -43,33 +49,38 @@ const page = () => {
   console.log(isValid());
 
   async function handleRegisterOnSubmit() {
-    setCommonLoader(true);
+    setPageLevelLoader(true);
     const data = await registerNewUser(formData);
     if (data.success) {
-      toast.success(data.message,{ 
-        position:toast.POSITION.TOP_RIGHT
-      })
-      setCommonLoader(false);
+      router.push("/login");
+      toast.success(data.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setPageLevelLoader(false);
       setFormData({
         name: "",
         email: "",
         password: "",
-        roleAdmin:false
+        roleAdmin: false,
       });
     } else {
-      toast.error(data.message,{
-        position:toast.POSITION.TOP_RIGHT
-      })
-      setCommonLoader(false);
+      toast.error(data.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setPageLevelLoader(false);
       setFormData({
         name: "",
         email: "",
         password: "",
-        roleAdmin:false
+        roleAdmin: false,
       });
     }
     console.log(data);
   }
+  useEffect(() => {
+    if (isAuthUser) router.push("/");
+  }, [isAuthUser]);
+
   return (
     <div className="register">
       <div className="register_container">
@@ -109,14 +120,15 @@ const page = () => {
         </div>
         <div className="register_btn">
           <button disabled={!isValid()} onClick={handleRegisterOnSubmit}>
-            {commonLoader ? (
-              <LoaderCompo
-                text={"Regetering"}
-                color={'white'}
-                loading={commonLoader}
+            {  pageLevelLoader ? (
+              <ComponentLevelLoader
+                text={""}
+                color={"#fff"}
+                loading={pageLevelLoader}
+                
               />
             ) : (
-              'Register'
+              "Register"
             )}
           </button>
           <div className="haveAcc">
@@ -132,7 +144,7 @@ const page = () => {
         </div>
       </div>
       <Notification />
-    </div>    
+    </div>
   );
 };
 
