@@ -56,7 +56,7 @@ const AdminViewAddProduct = () => {
         onChange={inputHandle}
       />
       <input
-        type="text"
+        type="number"
         id="price"
         value={formData.price}
         name="price"
