@@ -7,7 +7,7 @@ export const login = async (formData) => {
       },
       body: JSON.stringify(formData),
     });
-    const finalData = responses.json();
+    const finalData = await responses.json();
     return finalData;
   } catch (e) {
     console.log(`the errrror ${e}`);
