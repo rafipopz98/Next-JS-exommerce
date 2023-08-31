@@ -1,9 +1,17 @@
 "use client";
 import React, { useState } from "react";
 import "./AddProduct.css";
+import {
+  firebaseConfig,
+  firebaseStorage,
+} from "@/src/components/FeaturedProducts/Projects";
+import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app, firebaseStorage);
 const AdminViewAddProduct = () => {
-  const handleImage = () => {
-    console.log("image added");
+  const handleImage = async (event) => {
+    console.log(event.target.files);
   };
   let name, value;
 
@@ -21,17 +29,18 @@ const AdminViewAddProduct = () => {
     name: "",
     price: "",
     desc: "",
-    category:{
-      tees:"",
-      cargo:'',
-      hoodies:"",
-      pants:"",
-      accessories:"",
+    category: {
+      tees: "",
+      cargo: "",
+      hoodies: "",
+      pants: "",
+      accessories: "",
     },
     DInfo: "",
 
-    pDrop:"",
+    pDrop: "",
   });
+
   return (
     <div className="container_addProducts">
       <input
