@@ -12,6 +12,7 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
+import { addProduct } from "@/src/services/product";
 
 const app = initializeApp(firebaseConfig);
 
@@ -50,41 +51,32 @@ const AdminViewAddProduct = () => {
 
   let name, value;
 
-  
-  const [selected, setSelected] = useState('');
+  const [selected, setSelected] = useState("");
+  let white = "#fff";
+  let black = "#000";
+  const [bgcolor, setBgColor] = useState(white);
+  const [color, setColor] = useState(black);
 
-  
   const [formData, setFormData] = useState({
     image: "",
     name: "",
-    price: 0,
+    price: "",
     desc: "",
-    category: '',
     DInfo: "",
-
-    pDrop: 0,
+    pDrop: "",
+    sizes: [],
   });
 
   const inputHandle = (e) => {
-    console.log("gg");
+    // console.log("gg");
     name = e.target.name;
     value = e.target.value;
     // console.log("some stuff", formData.category);
+
     setFormData({
       ...formData,
       [name]: value,
     });
-  };
-
-  const handleChange = event => {
-    console.log('Label 👉️', event.target.selectedOptions[0].label);
-    const noice= setSelected(event.target.value)
-    setFormData({
-      ...formData,
-      category:noice
-    });
-    // console.log(formData)
-    // console.log(event.target.value);
   };
 
   const handleImage = async (event) => {
@@ -102,25 +94,90 @@ const AdminViewAddProduct = () => {
     }
   };
 
-  console.log("selecteddd",selected);
-  console.log("all the data",formData);
+  // console.log("selecteddd", selected);
+  // console.log("all the data", formData);
+  const handleChange = (event) => {
+    // console.log('Label 👉️', event.target.selectedOptions[0].label);
+    const noice = setSelected(event.target.value);
+    setFormData({
+      ...formData,
+      category: noice,
+    });
+    // console.log(formData)
+    // console.log(event.target.value);
+  };
 
-  
-console.log()
+  const handleSpan = (event) => {
+    let items = { id: event.target.id };
+    // console.log(items.id)
+    let copySize = [...formData.sizes];
+    const index = copySize.findIndex((item) => item === items.id);
+
+    if (index === -1) {
+      copySize.push(items.id);
+      console.log("if");
+      // setBgColor(black)
+      setColor(white);
+      setBgColor(black);
+    } else {
+      copySize = copySize.filter((item) => item !== items.id);
+      console.log("else");
+
+      setBgColor(white);
+      setColor(black);
+    }
+    setFormData({
+      ...formData,
+      sizes: copySize,
+    });
+  };
+
+  const handleSubmit = async () => {
+    // console.log(formData);
+    const res = await addProduct(formData);
+
+    console.log(res);
+  };
+  // console.log('2',formData);
+
   return (
     <div className="container_addProducts">
       <input
-        accept="image/*"
+        // accept="image"
+        name="image"
+        id="image"
         size="1000000"
         type="file"
-        value={formData.image}
+        // value={formData.image}
         onChange={handleImage}
       />
       <div className="spans_size">
         <h2>Available Sizes</h2>
-        <span>S</span>
-        <span>M</span>
-        <span>L</span>
+
+        <span
+          style={{ background: white, color: black }}
+          onClick={handleSpan}
+          label="s"
+          id="s"
+        >
+          S
+        </span>
+        <span
+          style={{ background: white, color: black }}
+          onClick={handleSpan}
+          name="m"
+          id="m"
+        >
+          M
+        </span>
+        <span
+          style={{ background: white, color: black }}
+          onClick={handleSpan}
+          name="l"
+          id="l"
+        >
+          L
+        </span>
       </div>
       <input
         type="text"
@@ -148,15 +205,18 @@ console.log()
       />
       <select
         placeholder="Category"
+        name="category"
         value={formData.category}
-        onChange={handleChange}
+        onChange={inputHandle}
       >
-      <option value="">--Choose an option--</option>
-        <option name="tees" id="tees" value="tees">Tees</option>
+        <option value="">--Choose an option--</option>
+        <option name="tees" id="tees" value="tees">
+          Tees
+        </option>
         <option id="cargo" value="cargo">
           Cargo
         </option>
-        <option  id="pants" value="pants">
+        <option id="pants" value="pants">
           Pants
         </option>
         <option id="hoodies" value="hoodies">
@@ -180,7 +240,7 @@ console.log()
         placeholder="Enter Price Drop"
         onChange={inputHandle}
       />
-      <button>ADD PRODUCT</button>
+      <button onClick={handleSubmit}>ADD PRODUCT</button>
     </div>
   );
 };

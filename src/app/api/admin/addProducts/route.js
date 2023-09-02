@@ -1,67 +1,157 @@
+// import Product from "@/src/app/product/page";
+import { connectionDb } from "@/src/database";
 import Products from "@/src/models/product";
-import Joi from Joi;
 
-const addNewProductSchema=Joi.object({
-    name:Joi.string().required(),
-    price:Joi.number().required(),
-    desc:Joi.string().required(),
-    category:Joi.string().required(),
-    DInfo:Joi.string().required(),
-    pDrop:Joi.string().required(),
-    image:Joi.string().required(),
-})
+// import Joi from "joi";
+// // import { jwt } from "jsonwebtoken";
+// import jwt from 'jsonwebtoken'
+// import { NextResponse } from "next/server";
 
-export const dynamic = "force-dynmaic";
+// const addNewProductSchema = Joi.object({
+//   name: Joi.string().required(),
+//   price: Joi.number().required(),
+//   desc: Joi.string().required(),
+//   category: Joi.string().required(),
+//   DInfo: Joi.string().required(),
+//   pDrop: Joi.string().required(),
+//   image: Joi.string().required(),
+// });
 
+// export const dynamic = "force-dynmaic";
 
-export async function POST(req){
-    
+// export async function POST(req) {
+//   try {
+//     await connectionDb();
 
-  try{
+//     const user='admin';
 
+//     if (user === "admin") {
+//     } else {
+//       return NextResponse.json({
+//         success: false,
+//         message: ` not authorized`,
+//       });
+//     }
+//     const extractData = await req.json();
+//     const { image, name, price, desc, category, DInfo, pDrop } = extractData;
+
+//     const error = addNewProductSchema.validate({
+//       image,
+//       name,
+//       price,
+//       desc,
+//       category,
+//       DInfo,
+//       pDrop,
+//     });
+
+//     if (error) {
+//       return NextResponse.json({
+//         success: false,
+//         message: ` heres `,
+//       });
+//     }
+
+//     const newProduct = await Products.create(extractData);
+
+//     if (newProduct) {
+//       return NextResponse.json({
+//         success: true,
+//         message: ` added successfully`,
+//       });
+//     } else {
+//       return NextResponse.json({
+//         success: false,
+//         message: ` Failed to add procust || the error is errrororrororo`,
+//       });
+//     }
+//   } catch (e) {
+//     return NextResponse.json({
+//       success: false,
+//       message: ` the error is uWu ${e}`,
+//     });
+//   }
+// }
+
+// import {connectionDb} from "@/database";
+// import AuthUser from "@/middleware/AuthUser";
+// import Product from "@/models/product";
+import Joi from "joi";
+import { NextResponse } from "next/server";
+
+const addNewProductSchema = Joi.object({
+  name: Joi.string().required(),
+  price: Joi.number().required(),
+  desc: Joi.string().required(),
+  category: Joi.string().required(),
+  DInfo: Joi.string().required(),
+  pDrop: Joi.string().required(),
+  image: Joi.string().required(),
+  sizes: Joi.array().required(),
+});
+
+export const dynamic = "force-dynamic";
+
+export async function POST(req) {
+  try {
     await connectionDb();
 
-    if(user==='admin'){
+    // const isAuthUser = await AuthUser(req)
 
-    }else{
+    // console.log(isAuthUser , 'sangam');
+    const user = "admin";
+
+    if (user === "admin") {
+      const extractData = await req.json();
+
+      const { image, name, price, desc, category, DInfo, pDrop, sizes } =
+        extractData;
+      const { error } = addNewProductSchema.validate({
+        image,
+        name,
+        price,
+        desc,
+        category,
+        DInfo,
+        pDrop,
+        sizes,
+      });
+
+      if (error) {
+        console.log("error at first");
         return NextResponse.json({
-            success: false,
-            message: ` not authorized`,
-          });
-    }
-    const extractData=await req.json();
-    const{image,name,price,desc,category,DInfo,pDrop}=extractData;
+          success: false,
+          message: error.details[0].message,
+        });
+      }
 
-    const error=addNewProductSchema.validate({image,name,price,desc,category,DInfo,pDrop})
+      const newProduct = await Products.create(extractData);
 
-    if(error){
+      if (newProduct) {
+        return NextResponse.json({
+          success: true,
+          message: "Product added successfully",
+        });
+      } else {
+        console.log("second error");
+        return NextResponse.json({
+          success: false,
+          message: "Failed to add the product ! please try again",
+        });
+      }
+    } else {
+      console.log("thurd error");
       return NextResponse.json({
-      success: false,
-      message: ` heres ${error.details[0].message}`,
-    });
-  }
-  
-  const newProduct=await Products.create(extractData)
-
-  if(newProduct){
-  return NextResponse.json({
-      success: true,
-      message: ` added successfully`,
-    });
-  }
-  else{
-  return NextResponse.json({
-      success: false,
-      message: ` Failed to add procust || the error is  ${error.details[0].message}`,
-    });
-  }
-
-  }catch(e){
+        success: false,
+        message: "You are not autorized !",
+      });
+    }
+  } catch (error) {
+    console.log("fourth");
+    console.log(error);
     return NextResponse.json({
       success: false,
-      message: ` the error is  ${error.details[0].message}`,
+      message: "Something went wrong ! Please try again later",
     });
   }
 }
-
-    
