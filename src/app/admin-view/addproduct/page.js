@@ -138,7 +138,7 @@ const AdminViewAddProduct = () => {
 
     console.log(res);
   };
-  // console.log('2',formData);
+  console.log('2',formData);
 
   return (
     <div className="container_addProducts">
