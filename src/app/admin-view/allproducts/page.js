@@ -1,8 +1,11 @@
+import SingleProduct from '@/src/components/SingleProduct'
 import React from 'react'
 
 const AdminViewAllProducts = () => {
   return (
-    <div>AdminViewAllProducts</div>
+    <div>
+      <SingleProduct />
+    </div>
   )
 }
 
