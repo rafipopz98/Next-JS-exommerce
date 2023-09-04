@@ -66,7 +66,11 @@ const Navbar = () => {
           </Link>
         </div>
       )}
-      {isAuthUser&&(user?.roleAdmin) ?(<div className='itemu'>AdminView</div>):null}
+      {isAuthUser&&(user?.roleAdmin) ?(
+        <Link href={'/admin-view'}>
+        <div className='itemu' >AdminView</div>
+        </Link>
+        ):null}
     </div>
   );
 };

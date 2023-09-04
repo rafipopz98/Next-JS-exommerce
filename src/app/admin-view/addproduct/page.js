@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./AddProduct.css";
 import {
   firebaseConfig,
@@ -13,12 +13,20 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import { addProduct } from "@/src/services/product";
+import { GlobalContext } from "@/src/context";
+import ComponentLevelLoader from "@/src/components/Loader/LoaderCom/page";
+import Notification from "@/src/components/Notification";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const app = initializeApp(firebaseConfig);
 
 const storage = getStorage(app, firebaseStorage);
 
 const AdminViewAddProduct = () => {
+  const { componentLevelLoader, setComponentLevelLoader } =
+    useContext(GlobalContext);
+
   const uniqueFileName = async (getfile) => {
     const timeStamp = Date.now();
     const randomStringValue = Math.random().toString(36).substring(2, 12);
@@ -107,6 +115,8 @@ const AdminViewAddProduct = () => {
     // console.log(event.target.value);
   };
 
+  const router=useRouter();
+
   const handleSpan = (event) => {
     let items = { id: event.target.id };
     // console.log(items.id)
@@ -134,14 +144,35 @@ const AdminViewAddProduct = () => {
 
   const handleSubmit = async () => {
     // console.log(formData);
+    setComponentLevelLoader({ loading: true, id: "" });
     const res = await addProduct(formData);
+    if (res.success) {
+      setComponentLevelLoader({ loading: false, id: "" });
+      toast.success(res.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setTimeout(()=>{
+        router.push('/admin-view/allproducts')
+      },1000)
 
+    } else {
+      setComponentLevelLoader({ loading: false, id: "" });
+      console.log("error");
+      toast.error(res.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+
+    }
     console.log(res);
   };
-  console.log('2',formData);
+  console.log("2", formData);
 
   return (
     <div className="container_addProducts">
+    <div className="">
+        <h3 onClick={()=>router.push('/admin-view/allproducts')}>Manage All Products</h3>
+        <h3  onClick={()=>router.push('/admin-view/addproduct')}>Add Products</h3>
+      </div>
       <input
         // accept="image"
         name="image"
@@ -240,7 +271,18 @@ const AdminViewAddProduct = () => {
         placeholder="Enter Price Drop"
         onChange={inputHandle}
       />
-      <button onClick={handleSubmit}>ADD PRODUCT</button>
+      <button onClick={handleSubmit}>
+        {componentLevelLoader && componentLevelLoader.loading ? (
+          <ComponentLevelLoader
+            text={"adddidng"}
+            color={"#fff"}
+            loading={componentLevelLoader && componentLevelLoader.loading}
+          />
+        ) : (
+          "ADD PRODUCT"
+        )}
+      </button>
+      <Notification/>
     </div>
   );
 };
