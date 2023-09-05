@@ -1,6 +1,8 @@
 "use client";
-import ProductButtons from "./ProductButtons";
-import ProductTile from "./ProductTile";
+import ProductButtons from "./ProductButtons/page";
+import ProductTile from "./ProductTile/page";
+// import ProductButtons from "./ProductButtons";
+// import ProductTile from "./ProductTile";
 import "./SingleProduct.css";
 const dummy = [
   {
@@ -21,15 +23,16 @@ const SingleProduct = () => {
   return (
     <section className="SingleSection">
       <div className="singleFirst">
-        <div className="singleSecond">{
-            dummy&&dummy.length?
-            dummy.map((item)=>{
+        <div className="singleSecond">
+          {dummy
+            ? dummy.map((item) => {
                 <article key={item._id}>
-                <ProductTile item={item}/>
-                <ProductButtons item={item}/>
-                </article>
-            }):null
-        }</div>
+                  <ProductTile item={item} />
+                  <ProductButtons item={item} />
+                </article>;
+              })
+            : null}
+        </div>
       </div>
     </section>
   );

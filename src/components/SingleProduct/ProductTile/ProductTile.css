@@ -12,3 +12,24 @@
 .TileFirst:hover{
     scale: 125px;
 }
+.priceAndName{
+    margin:  auto  4px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+}
+.priceTile{
+    margin-bottom: 2px;
+    display: flex;
+}
+.paraPriceTile{
+    margin-right: 4px;
+    font-size: 14px;
+}
+.nameTile{
+    margin: 2px;
+    color: gray;
+    font-size: 14px;
+}

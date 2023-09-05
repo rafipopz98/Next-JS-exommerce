@@ -1,10 +1,11 @@
-import SingleProduct from '@/src/components/SingleProduct'
+import List from '@/src/components/List/List'
+import SingleProduct from '@/src/components/SingleProduct/page'
 import React from 'react'
 
 const AdminViewAllProducts = () => {
   return (
     <div>
-      <SingleProduct />
+      <List />
     </div>
   )
 }

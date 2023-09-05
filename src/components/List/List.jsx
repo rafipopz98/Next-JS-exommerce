@@ -1,68 +1,34 @@
-import React from 'react'
-import './List.css'
-import image0 from '../../../public/image0.jpeg'
-import image1 from '../../../public/image1.jpeg'
-import image2 from '../../../public/image2.jpeg'
-import image3 from '../../../public/image3.jpeg'
-import image4 from '../../../public/image4.jpeg'
-import image5 from '../../../public/image5.jpeg'
-import Card from '../Card/Card'
+'use client'
+import React from "react";
+import "./List.css";
+import Card from "../Card/Card";
+import ProductButtons from "../SingleProduct/ProductButtons/page";
 const List = () => {
-    const data = [
-        {
-          id: 1,
-          img1:image0,
-          img2:image1,
-          // img1: "https://i.pinimg.com/736x/7e/05/e0/7e05e0d3c0e3151a9f8d25a6e5fac44a.jpg",
-          // img2: "https://pbs.twimg.com/media/EYDlBD8XkAAqPSn.jpg",
-          title: "Black hoodie",
-          isNew: true,
-          oldPrice: 19,
-          newPrice: 20,
-        },
-        {
-          id: 2,
-          img1:image2,
-          img2:image3,
-          // img1: "https://i.pinimg.com/originals/fb/6d/34/fb6d3458fa64ba2f8ad176e761ae7fd9.jpg",
-          // img2: "https://e1.pxfuel.com/desktop-wallpaper/110/350/desktop-wallpaper-oreki-houtarou-houtarou-oreki.jpg",
-          title: "Cargo",
-          isNew: true,
-          oldPrice: 15,
-          newPrice: 13,
-        },
-        {
-          id: 3,
-          // img1: "https://arthive.net/res/media/img/orig/work/506/7545965.jpg",
-          // img2: "https://pbs.twimg.com/media/EYDlBD8XkAAqPSn.jpg",
-          img1:image4,
-          img2:image5,
-          title: "Oversized Tees",
-          isNew: false,
-          oldPrice: 17,
-          newPrice: 9,
-        },
-        {
-          id: 4,
-          // img1: "https://e1.pxfuel.com/desktop-wallpaper/110/350/desktop-wallpaper-oreki-houtarou-houtarou-oreki.jpg",
-          // img2: "https://i.pinimg.com/736x/7e/05/e0/7e05e0d3c0e3151a9f8d25a6e5fac44a.jpg",
-          img1:image0,
-          img2:image1,
-          title: "Nike Air Shoe",
-          isNew: false,
-          oldPrice: 12,
-          newPrice: 6,
-        },
-      ];
-  return (
-    <div className='lists'>
-         { 
-            data.map(item=>(
-               <Card item={item} key={item.id} /> 
-            ))
-         }
-    </div>
-  )
-}
+  const data = [
+    {
+      _id: "64f4ce96798a2614f26712d4",
+      name: "lkj",
+      price: 322222215,
+      desc: "mn,vcxvghb",
+      category: "cargo",
+      DInfo: "'okjhgklj",
+      pDrop: "54511",
+      image:
+        "https://firebasestorage.googleapis.com/v0/b/ecommerce-nextjs-25483.appspot.com/o/ecommerce%2F%5Bobject%20Promise%5D?alt=media&token=538fb879-3a62-4d03-8684-94a7dba1b2bf",
 
-export default List
+      sizes: ["m", "l", "s"],
+    },
+  ];
+  return (
+    <div className="lists">
+      {data.map((item) => (
+        <article key={item.id} className="ariticleList">
+          <Card item={item}  />
+          <ProductButtons item={item} />
+        </article>
+      ))}
+    </div>
+  );
+};
+
+export default List;

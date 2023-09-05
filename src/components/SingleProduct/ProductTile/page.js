@@ -9,7 +9,7 @@ const ProductTile = ({item}) => {
         <div className="priceAndName">
             <div className="priceTile">
                 <p className="paraPriceTile">
-                {item.price}
+               {`$ ${item.price}`}
                 </p>
             </div>
             <h3 className="nameTile">
