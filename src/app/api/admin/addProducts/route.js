@@ -17,6 +17,7 @@ const addNewProductSchema = Joi.object({
 
 export const dynamic = "force-dynamic";
 
+
 export async function POST(req) {
   try {
     await connectionDb();

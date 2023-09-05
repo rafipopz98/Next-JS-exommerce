@@ -1,11 +1,13 @@
 import List from '@/src/components/List/List'
-import SingleProduct from '@/src/components/SingleProduct/page'
+import { getAllAdminroducts } from '@/src/services/product'
 import React from 'react'
 
-const AdminViewAllProducts = () => {
+const AdminViewAllProducts = async() => {
+  const allAdminProducts=await getAllAdminroducts()
+  console.log(getAllAdminroducts)
   return (
     <div>
-      <List />
+      <List data={allAdminProducts && allAdminProducts.data} />
     </div>
   )
 }
