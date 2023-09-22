@@ -1,5 +1,5 @@
-import { connectionDb } from "@/src/database";
-import Products from "@/src/models/product";
+import { connectionDb } from "../../../../../src/database";
+import Products from "../../../../../src/models/product";
 import { NextResponse } from "next/server";
 
 

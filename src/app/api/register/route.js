@@ -1,5 +1,5 @@
-import {connectionDb} from "@/src/database";
-import User from "@/src/models/user";
+import {connectionDb} from "../../../../src/database/index";
+import User from "../../../../src/models/user";
 import {hash} from "bcrypt";
 import Joi from "joi";
 import { NextResponse } from "next/server";

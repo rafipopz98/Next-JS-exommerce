@@ -1,6 +1,6 @@
 import NextResponse from "next/server";
-import connectionDb from "@src/database";
-import Products from "@/src/models/product";
+import connectionDb from "../../../../../src/database";
+import Products from "../../../../../src/models/product";
 export const dynamic = "force-dynamic";
 export async function DELETE(req) {
   try {

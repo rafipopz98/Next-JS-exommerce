@@ -2,14 +2,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./login.css";
 import Link from "next/link";
-import { GlobalContext } from "@/src/context";
-import { login } from "@/src/services/login";
+import { GlobalContext } from "../../../src/context";
+import { login } from "../../../src/services/login";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 // import LoaderCompo from "@/src/components/Loader/LoaderCom/page";
-import Notification from "@/src/components/Notification"; 
-import ComponentLevelLoader from "@/src/components/Loader/LoaderCom/page";
+import Notification from "../../../src/components/Notification"; 
+import ComponentLevelLoader from "../../../src/components/Loader/LoaderCom/page";
 const page = () => {
   const router = useRouter();
   const {

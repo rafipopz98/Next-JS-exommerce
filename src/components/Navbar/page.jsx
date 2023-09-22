@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import "./Navbar.css";
-import { GlobalContext } from "@/src/context";
+import { GlobalContext } from "../../../src/context";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 

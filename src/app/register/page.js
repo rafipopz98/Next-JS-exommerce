@@ -5,12 +5,12 @@ import { useRouter } from "next/navigation";
 
 import Link from "next/link";
 // import GlobalContext from "../../context/index";
-import { registerNewUser } from "@/src/services/register";
-import Notification from "@/src/components/Notification";
+import { registerNewUser } from "../../../src/services/register";
+import Notification from "../../../src/components/Notification";
 // import LoaderCompo from "@/src/components/Loader/LoaderCom/page";
 import { toast } from "react-toastify";
-import { GlobalContext } from "@/src/context";
-import ComponentLevelLoader from "@/src/components/Loader/LoaderCom/page";
+import { GlobalContext } from "../../../src/context";
+import ComponentLevelLoader from "../../../src/components/Loader/LoaderCom/page";
 // import { useRouter } from "next/navigation";
 // import GlobalState from "../../context/index";
 const page = () => {

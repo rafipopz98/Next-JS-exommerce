@@ -1,5 +1,5 @@
-import { connectionDb } from "@/src/database";
-import User from "@/src/models/user";
+import { connectionDb } from "../../../../src/database";
+import User from "../../../../src/models/user";
 import { compare } from "bcrypt";
 import Joi from "joi";
 // import { jwt } from "jsonwebtoken";

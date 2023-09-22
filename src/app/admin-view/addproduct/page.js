@@ -4,7 +4,7 @@ import "./AddProduct.css";
 import {
   firebaseConfig,
   firebaseStorage,
-} from "@/src/components/FeaturedProducts/Projects";
+} from "../../../../src/components/FeaturedProducts/Projects";
 import { initializeApp } from "firebase/app";
 import {
   getDownloadURL,
@@ -12,10 +12,10 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
-import { addProduct } from "@/src/services/product";
-import { GlobalContext } from "@/src/context";
-import ComponentLevelLoader from "@/src/components/Loader/LoaderCom/page";
-import Notification from "@/src/components/Notification";
+import { addProduct } from "../../../../src/services/product";
+import { GlobalContext } from "../../../../src/context";
+import ComponentLevelLoader from "../../../../src/components/Loader/LoaderCom/page";
+import Notification from "../../../../src/components/Notification";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
@@ -115,7 +115,7 @@ const AdminViewAddProduct = () => {
     // console.log(event.target.value);
   };
 
-  const router=useRouter();
+  const router = useRouter();
 
   const handleSpan = (event) => {
     let items = { id: event.target.id };
@@ -151,17 +151,15 @@ const AdminViewAddProduct = () => {
       toast.success(res.message, {
         position: toast.POSITION.TOP_RIGHT,
       });
-      setTimeout(()=>{
-        router.push('/admin-view/allproducts')
-      },1000)
-
+      setTimeout(() => {
+        router.push("/admin-view/allproducts");
+      }, 1000);
     } else {
       setComponentLevelLoader({ loading: false, id: "" });
       console.log("error");
       toast.error(res.message, {
         position: toast.POSITION.TOP_RIGHT,
       });
-
     }
     console.log(res);
   };
@@ -169,9 +167,13 @@ const AdminViewAddProduct = () => {
 
   return (
     <div className="container_addProducts">
-    <div className="">
-        <h3 onClick={()=>router.push('/admin-view/allproducts')}>Manage All Products</h3>
-        <h3  onClick={()=>router.push('/admin-view/addproduct')}>Add Products</h3>
+      <div className="">
+        <h3 onClick={() => router.push("/admin-view/allproducts")}>
+          Manage All Products
+        </h3>
+        <h3 onClick={() => router.push("/admin-view/addproduct")}>
+          Add Products
+        </h3>
       </div>
       <input
         // accept="image"
@@ -282,7 +284,7 @@ const AdminViewAddProduct = () => {
           "ADD PRODUCT"
         )}
       </button>
-      <Notification/>
+      <Notification />
     </div>
   );
 };
