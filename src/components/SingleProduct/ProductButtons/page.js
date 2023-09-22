@@ -22,7 +22,7 @@ const ProductButtons = ({ item }) => {
   async function handleDelete(item) {
     setComponentLevelLoader({ loading: true, id: item._id });
 
-    const res = await deleteProduct(item._id);
+    const res = await deleteProduct(item._id); 
 
     if (res.success) {
       setComponentLevelLoader({ loading: false, id: "" });

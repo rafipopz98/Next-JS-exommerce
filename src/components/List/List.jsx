@@ -7,15 +7,13 @@ import Notification from "../Notification";
 const List = ({ data }) => {
   return (
     <div className="lists">
-      {data && data.length
-        ? data.map((item) => (
-            <article  key={item._id} className="ariticleList">
-              <Card item={item} />
-              <ProductButtons item={item} />
-            </article>
-          ))
-        : null}
-        <Notification/>
+      {data.map((item) => (
+        <article key={item._id} className="ariticleList">
+          <Card item={item} />
+          <ProductButtons item={item} />
+        </article>
+      ))}
+      <Notification />
     </div>
   );
 };
