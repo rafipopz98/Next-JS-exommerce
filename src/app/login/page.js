@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 // import LoaderCompo from "@/src/components/Loader/LoaderCom/page";
 import Notification from "../../../src/components/Notification"; 
 import ComponentLevelLoader from "../../../src/components/Loader/LoaderCom/page";
-const page = () => {
+const Login = () => {
   const router = useRouter();
   const {
     isAuthUser,
@@ -161,4 +161,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Login;

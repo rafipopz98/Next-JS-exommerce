@@ -13,7 +13,7 @@ import { GlobalContext } from "../../../src/context";
 import ComponentLevelLoader from "../../../src/components/Loader/LoaderCom/page";
 // import { useRouter } from "next/navigation";
 // import GlobalState from "../../context/index";
-const page = () => {
+const Register = () => {
   const router = useRouter();
   const { pageLevelLoader, setPageLevelLoader,isAuthUser } = useContext(GlobalContext);
   const [formData, setFormData] = useState({
@@ -148,4 +148,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Register;
