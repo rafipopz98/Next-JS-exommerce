@@ -1,5 +1,5 @@
-import List from '@/src/components/List/List'
-import { getAllAdminroducts } from '@/src/services/product'
+import List from '../../../../src/components/List/List'
+import { getAllAdminroducts } from '../../../../src/services/product'
 import React from 'react'
 
 const AdminViewAllProducts = async() => {
