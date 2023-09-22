@@ -1,5 +1,4 @@
 'use client'
-import React from "react";
 import './Admin-view.css'
 import { useRouter } from "next/navigation";
 const AdminView = () => {

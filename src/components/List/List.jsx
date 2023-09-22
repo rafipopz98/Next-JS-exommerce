@@ -6,8 +6,8 @@ import ProductButtons from "../SingleProduct/ProductButtons/page";
 const List = ({ data }) => {
   return (
     <div className="lists">
-      {data.map((item) => (
-        <article key={item.id} className="ariticleList">
+      {data.map((item,id) => (
+        <article key={id} className="ariticleList">
           <Card item={item} />
           <ProductButtons item={item} />
         </article>
