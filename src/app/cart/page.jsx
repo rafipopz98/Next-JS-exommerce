@@ -40,7 +40,6 @@ const Cart = () => {
     <>
   <h1 className="heading_cart">Shopping Cart</h1>
     <div className="cart">
-
       <div className="cart_left">
         {data?.map((item,key) => (
           <div  className="items_cart" key={key}>
@@ -70,12 +69,12 @@ const Cart = () => {
       <div className="cart_right">
         <h2>Cart Totals</h2> 
         <div className="subtotal_cart">
-          {data?.map((item) => (
+          {/* {data?.map((item) => (
             <div > 
-               {/* <h1 ><span style={{width:'350em'}}>{item.title} </span>   ${item.price}</h1> */}
+               <h1 ><span style={{width:'350em'}}>{item.title} </span>   ${item.price}</h1>
               
             </div>
-          ))}
+          ))} */}
         </div>
         <div title="Proceed To Buy" className="total_cart">
           <h3>Total</h3>
