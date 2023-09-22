@@ -1,13 +1,17 @@
 import { NextResponse } from "next/server";
 import { connectionDb } from "../../../../../src/database";
 import Products from "../../../../../src/models/product";
+
 export const dynamic = "force-dynamic";
+
+
 export async function DELETE(req) {
   try {
     await connectionDb();
 
-    const { searchparams } = new URL(req.url);
-    const id = searchparams.get("id");
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+
     if (!id) {
       return NextResponse.json({
         success: false,
@@ -16,6 +20,7 @@ export async function DELETE(req) {
     }
 
     const deleteProduct = await Products.findByIdAndDelete(id);
+    
     if (deleteProduct) {
       return NextResponse.json({
         success: true,
@@ -29,8 +34,8 @@ export async function DELETE(req) {
       });
     }
   } catch (error) {
-    console.log("fourth");
-    console.log(error);
+    console.log("fourth cheeee",error);
+    console.log('\n',error);
     return NextResponse.json({
       success: false,
       message: "Something went wrong ! Please try again later",

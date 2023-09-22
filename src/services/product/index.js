@@ -62,15 +62,17 @@ export const updateProduct = async (formData) => {
 
 export const deleteProduct = async (id) => {
   try {
-    const pDelete = await fetch(`/api/admin/deleteProduct?id=${id}`, {
+    const res = await fetch(`/api/admin/deleteProduct?id=${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${Cookies.get("token")}`,
       },
     });
-    const data = await pDelete.json();
+
+    const data = await res.json();
+
     return data;
   } catch (e) {
-    console.log("error occured while deletin product ", e);
+    console.log(e);
   }
 };

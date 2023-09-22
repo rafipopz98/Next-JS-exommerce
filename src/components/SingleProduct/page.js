@@ -2,10 +2,9 @@
 import { useRouter } from "next/router";
 import ProductButtons from "./ProductButtons/page";
 import ProductTile from "./ProductTile/page";
-// import ProductButtons from "./ProductButtons";
-// import ProductTile from "./ProductTile";
 import "./SingleProduct.css";
 import { useEffect } from "react";
+import Notification from "../Notification";
 const dummy = [
   {
     _id: "64f4ce96798a2614f26712d4",
@@ -40,6 +39,7 @@ const SingleProduct = () => {
             : null}
         </div>
       </div>
+      <Notification/>
     </section>
   );
 };

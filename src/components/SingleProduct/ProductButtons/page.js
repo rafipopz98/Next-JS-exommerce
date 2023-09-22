@@ -6,30 +6,37 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useContext } from "react";
 import { toast } from "react-toastify";
+import ComponentLevelLoader from "../../Loader/LoaderCom/page";
 
 const ProductButtons = ({ item }) => {
-  const { setCurrentUpdatedProduct, setComponentLevelLoader } =
-    useContext(GlobalContext);
+  const {
+    setCurrentUpdatedProduct,
+    setComponentLevelLoader,
+    componentLevelLoader,
+  } = useContext(GlobalContext);
+
   const router = useRouter();
   const pathName = usePathname();
   const isAdmin = pathName.includes("admin-view");
-  const handleDelete = async (item) => {
+
+  async function handleDelete(item) {
+    setComponentLevelLoader({ loading: true, id: item._id });
+
     const res = await deleteProduct(item._id);
-    console.log("hereeee");
+
     if (res.success) {
-      console.log("here");
-      setComponentLevelLoader({ loading: false, id: item._id });
+      setComponentLevelLoader({ loading: false, id: "" });
       toast.success(res.message, {
         position: toast.POSITION.TOP_RIGHT,
       });
+      router.refresh();
     } else {
-      console.log("error");
       toast.error(res.message, {
         position: toast.POSITION.TOP_RIGHT,
       });
       setComponentLevelLoader({ loading: false, id: "" });
     }
-  };
+  }
 
   return isAdmin ? (
     <div className="uWuButtonsSingle">
@@ -42,11 +49,18 @@ const ProductButtons = ({ item }) => {
         UPDATE
       </button>
       <button onClick={() => handleDelete(item)}>
-      {
-        
-      }
-       DELETE 
-       </button>
+        {componentLevelLoader &&
+        componentLevelLoader.loading &&
+        item._id === componentLevelLoader.id ? (
+          <ComponentLevelLoader
+            text={"Deleting Product"}
+            color={"#ffffff"}
+            loading={componentLevelLoader && componentLevelLoader.loading}
+          />
+        ) : (
+          "DELETE"
+        )}
+      </button>
     </div>
   ) : (
     <div className="uWuButtonsSingle">

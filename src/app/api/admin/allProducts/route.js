@@ -11,9 +11,7 @@ export async function GET(req){
 
         await connectionDb();
 
-        const user='admin'
-
-        if(user==='admin'){
+        
         
             const extractData=await Products.find({})
 
@@ -31,14 +29,7 @@ export async function GET(req){
                 })
             }
 
-        }
-        else{
-            console.log("thurd error");
-            return NextResponse.json({
-              success: false,
-              message: "You are not autorized !",
-            });
-        }
+        
 
     }catch (error) {
         console.log("fourth");
