@@ -12,11 +12,10 @@ export default function Home() {
 
   return (
    <div className="home">
-    {/* <Slide1 /> */}
-    {/* <Featured heading="Featured"/> */}
-    ji
-    {/* <Categories /> */}
-    {/* <Featured heading="Sale"/> */}
+    <Slide1 />
+    <Featured heading="Featured"/>
+    <Categories />
+    <Featured heading="Sale"/>
    </div> 
   ) 
 }
