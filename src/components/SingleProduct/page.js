@@ -1,9 +1,11 @@
 "use client";
+import { useRouter } from "next/router";
 import ProductButtons from "./ProductButtons/page";
 import ProductTile from "./ProductTile/page";
 // import ProductButtons from "./ProductButtons";
 // import ProductTile from "./ProductTile";
 import "./SingleProduct.css";
+import { useEffect } from "react";
 const dummy = [
   {
     _id: "64f4ce96798a2614f26712d4",
@@ -20,6 +22,10 @@ const dummy = [
   },
 ];
 const SingleProduct = () => {
+  const router = useRouter();
+  useEffect(() => {
+    router.refresh();
+  }, []);
   return (
     <section className="SingleSection">
       <div className="singleFirst">

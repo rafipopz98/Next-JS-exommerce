@@ -73,7 +73,7 @@ export async function POST(req) {
       });
     }
   } catch (error) {
-    console.log("fourth");
+    console.log("fourth ig here");
     console.log(error);
     return NextResponse.json({
       success: false,

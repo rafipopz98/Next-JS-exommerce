@@ -49,10 +49,12 @@ export const updateProduct = async (formData) => {
       },
       body: JSON.stringify(formData),
     });
+
     const data = await responses.json();
+
     return data;
   } catch (e) {
-    console.log(`the errrror ${e}`);
+    console.log(e);
   }
 };
 
@@ -66,7 +68,7 @@ export const deleteProduct = async (id) => {
         Authorization: `Bearer ${Cookies.get("token")}`,
       },
     });
-    const data = await responses.json();
+    const data = await pDelete.json();
     return data;
   } catch (e) {
     console.log("error occured while deletin product ", e);

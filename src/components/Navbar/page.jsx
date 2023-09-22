@@ -5,11 +5,17 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import "./Navbar.css";
 import { GlobalContext } from "../../../src/context";
 import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
-
+import { usePathname, useRouter } from "next/navigation";
 
 const Navbar = () => {
-  const { user, setUser, isAuthUser, setIsAuthUser} =useContext(GlobalContext);
+  const {
+    user,
+    setUser,
+    isAuthUser,
+    setIsAuthUser,
+    currentUpdatedProduct,
+    setCurrentUpdatedProduct,
+  } = useContext(GlobalContext);
   const router = useRouter();
   const logoutHandler = () => {
     setIsAuthUser(false);
@@ -22,7 +28,19 @@ const Navbar = () => {
     console.log("loggeedout");
   };
   // const oll=false;
-  console.log("hmmmmmmmmmmmmm",user?.roleAdmin ,isAuthUser);
+  console.log("hmmmmmmmmmmmmm", user?.roleAdmin, isAuthUser);
+
+  const pathName = usePathname();
+
+  console.log(currentUpdatedProduct, "nabarrr");
+  useEffect(() => {
+    if (
+      pathName !== "/admin-view/addproduct" &&
+      currentUpdatedProduct !== null
+    )
+      setCurrentUpdatedProduct(null);
+  }, [pathName]);
+
 
   return (
     <div className="navbar">
@@ -66,11 +84,11 @@ const Navbar = () => {
           </Link>
         </div>
       )}
-      {isAuthUser&&(user?.roleAdmin) ?(
-        <Link href={'/admin-view'}>
-        <div className='itemu' >AdminView</div>
+      {isAuthUser && user?.roleAdmin ? (
+        <Link href={"/admin-view"}>
+          <div className="itemu">AdminView</div>
         </Link>
-        ):null}
+      ) : null}
     </div>
   );
 };

@@ -17,6 +17,7 @@ export default function GlobalState({ children }) {
   const [isAuthUser, setIsAuthUser] = useState(null);
   const [user, setUser] = useState();
   const [isAdmin, setIsAdmin] = useState();
+  const [currentUpdatedProduct, setCurrentUpdatedProduct] = useState(null);
 
   useEffect(() => {
     // console.log('lol loooook',localStorage.getItem("user"))
@@ -52,6 +53,8 @@ export default function GlobalState({ children }) {
         setIsAdmin,
         componentLevelLoader,
         setComponentLevelLoader,
+        currentUpdatedProduct,
+        setCurrentUpdatedProduct,
       }}
     >
       {children}

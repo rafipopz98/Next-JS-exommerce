@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./AddProduct.css";
 import {
   firebaseConfig,
@@ -12,7 +12,7 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
-import { addProduct } from "../../../../src/services/product";
+import { addProduct, updateProduct } from "../../../../src/services/product";
 import { GlobalContext } from "../../../../src/context";
 import ComponentLevelLoader from "../../../../src/components/Loader/LoaderCom/page";
 import Notification from "../../../../src/components/Notification";
@@ -20,44 +20,50 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 const app = initializeApp(firebaseConfig);
-
 const storage = getStorage(app, firebaseStorage);
 
+const createUniqueFileName = (getFile) => {
+  const timeStamp = Date.now();
+  const randomStringValue = Math.random().toString(36).substring(2, 12);
+
+  return `${getFile.name}-${timeStamp}-${randomStringValue}`;
+};
+
+async function helperForUPloadingImageToFirebase(file) {
+  const getFileName = createUniqueFileName(file);
+  const storageReference = ref(storage, `ecommerce/${getFileName}`);
+  const uploadImage = uploadBytesResumable(storageReference, file);
+
+  return new Promise((resolve, reject) => {
+    uploadImage.on(
+      "state_changed",
+      (snapshot) => {},
+      (error) => {
+        console.log(error);
+        reject(error);
+      },
+      () => {
+        getDownloadURL(uploadImage.snapshot.ref)
+          .then((downloadUrl) => resolve(downloadUrl))
+          .catch((error) => reject(error));
+      }
+    );
+  });
+}
+
 const AdminViewAddProduct = () => {
-  const { componentLevelLoader, setComponentLevelLoader } =
-    useContext(GlobalContext);
-
-  const uniqueFileName = async (getfile) => {
-    const timeStamp = Date.now();
-    const randomStringValue = Math.random().toString(36).substring(2, 12);
-
-    return `${getfile.name}-${timeStamp}-${randomStringValue}`;
-  };
-
-  const helperforUploadingImageForFirebase = async (file) => {
-    const getFileName = uniqueFileName(file);
-    const storageRef = ref(storage, `ecommerce/${getFileName}`);
-
-    const uploadImage = uploadBytesResumable(storageRef, file);
-
-    return new Promise((resolve, reject) => {
-      uploadImage.on(
-        `state_changed`,
-        (snapshot) => {},
-        (error) => {
-          console.log(`the errror is ${error}`);
-          reject(error);
-        },
-        () => {
-          getDownloadURL(uploadImage.snapshot.ref)
-            .then((downloadUrl) => resolve(downloadUrl))
-            .catch((error) => reject(error));
-        }
-      );
-    });
-  };
-
+  const {
+    componentLevelLoader,
+    setComponentLevelLoader,
+    currentUpdatedProduct,
+    setCurrentUpdatedProduct,
+  } = useContext(GlobalContext);
+  console.log("abe yaar", currentUpdatedProduct);
   let name, value;
+
+  useEffect(() => {
+    if (currentUpdatedProduct !== null) setFormData(currentUpdatedProduct);
+  }, [currentUpdatedProduct]);
 
   const [selected, setSelected] = useState("");
   let white = "#fff";
@@ -75,21 +81,9 @@ const AdminViewAddProduct = () => {
     sizes: [],
   });
 
-  const inputHandle = (e) => {
-    // console.log("gg");
-    name = e.target.name;
-    value = e.target.value;
-    // console.log("some stuff", formData.category);
-
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
   const handleImage = async (event) => {
     console.log(event.target.files);
-    const extractimageUrl = await helperforUploadingImageForFirebase(
+    const extractimageUrl = await helperForUPloadingImageToFirebase(
       event.target.files[0]
     );
     console.log(extractimageUrl);
@@ -100,6 +94,18 @@ const AdminViewAddProduct = () => {
         image: extractimageUrl,
       });
     }
+  };
+
+  const inputHandle = (e) => {
+    // console.log("gg");
+    name = e.target.name;
+    value = e.target.value;
+    // console.log("some stuff", formData.category);
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   // console.log("selecteddd", selected);
@@ -126,15 +132,9 @@ const AdminViewAddProduct = () => {
     if (index === -1) {
       copySize.push(items.id);
       console.log("if");
-      // setBgColor(black)
-      setColor(white);
-      setBgColor(black);
     } else {
       copySize = copySize.filter((item) => item !== items.id);
       console.log("else");
-
-      setBgColor(white);
-      setColor(black);
     }
     setFormData({
       ...formData,
@@ -145,10 +145,16 @@ const AdminViewAddProduct = () => {
   const handleSubmit = async () => {
     // console.log(formData);
     setComponentLevelLoader({ loading: true, id: "" });
-    const res = await addProduct(formData);
-    if (res.success) {
+    const resp =
+      currentUpdatedProduct !== null
+        ? await updateProduct(formData)
+        : await addProduct(formData);
+
+    console.log("mimimi",resp);
+
+    if (resp.success) {
       setComponentLevelLoader({ loading: false, id: "" });
-      toast.success(res.message, {
+      toast.success(resp.message, {
         position: toast.POSITION.TOP_RIGHT,
       });
       setTimeout(() => {
@@ -157,13 +163,24 @@ const AdminViewAddProduct = () => {
     } else {
       setComponentLevelLoader({ loading: false, id: "" });
       console.log("error");
-      toast.error(res.message, {
+      toast.error(resp.message, {
         position: toast.POSITION.TOP_RIGHT,
       });
     }
-    console.log(res);
+    console.log("dddd ", resp);
   };
   console.log("2", formData);
+
+  const [selectedSpan, setSelectedSpan] = useState(null);
+  console.log(currentUpdatedProduct, "kokokokkok dfjgkhj");
+
+  const handleSpanClick = (id) => {
+    if (selectedSpan === id) {
+      setSelectedSpan(null);
+    } else {
+      setSelectedSpan(id);
+    }
+  };
 
   return (
     <div className="container_addProducts">
@@ -188,27 +205,18 @@ const AdminViewAddProduct = () => {
         <h2>Available Sizes</h2>
 
         <span
-          style={{ background: white, color: black }}
-          onClick={handleSpan}
-          label="s"
-          id="s"
+          onClick={(event) => {
+            handleSpanClick("s");
+            handleSpan(event);
+          }}
+          style={{ color: selectedSpan === "s" ? "red" : "" }}
         >
           S
         </span>
-        <span
-          style={{ background: white, color: black }}
-          onClick={handleSpan}
-          name="m"
-          id="m"
-        >
+        <span onClick={handleSpan} name="m" id="m">
           M
         </span>
-        <span
-          style={{ background: white, color: black }}
-          onClick={handleSpan}
-          name="l"
-          id="l"
-        >
+        <span onClick={handleSpan} name="l" id="l">
           L
         </span>
       </div>
@@ -276,12 +284,12 @@ const AdminViewAddProduct = () => {
       <button onClick={handleSubmit}>
         {componentLevelLoader && componentLevelLoader.loading ? (
           <ComponentLevelLoader
-            text={"adddidng"}
+            text={"Adding Product"}
             color={"#fff"}
             loading={componentLevelLoader && componentLevelLoader.loading}
           />
         ) : (
-          "ADD PRODUCT"
+          "Add Product"
         )}
       </button>
       <Notification />

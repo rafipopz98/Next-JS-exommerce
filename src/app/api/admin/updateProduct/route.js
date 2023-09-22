@@ -1,10 +1,10 @@
-import NextResponse from "next/server";
-import connectionDb from "../../../../../src/database";
+import { NextResponse } from "next/server";
+import { connectionDb } from "../../../../../src/database";
 import Products from "../../../../../src/models/product";
 
 export const dynamic = "force-dynamic";
 
-export async function PUT() {
+export async function PUT(req) {
   try {
     await connectionDb();
     const extractData = await req.json();
@@ -12,9 +12,7 @@ export async function PUT() {
     const { _id, image, name, price, desc, category, DInfo, pDrop, sizes } =
       extractData;
     const updateProduct = await Products.findOneAndUpdate(
-      {
-        _id: _id,
-      },
+      { _id: _id },
       {
         image,
         name,
@@ -41,7 +39,7 @@ export async function PUT() {
       });
     }
   } catch (error) {
-    console.log("fourth");
+    console.log("fourth here da");
     console.log(error);
     return NextResponse.json({
       success: false,
