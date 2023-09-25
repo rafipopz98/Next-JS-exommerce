@@ -34,13 +34,9 @@ const Navbar = () => {
 
   console.log(currentUpdatedProduct, "nabarrr");
   useEffect(() => {
-    if (
-      pathName !== "/admin-view/addproduct" &&
-      currentUpdatedProduct !== null
-    )
+    if (pathName !== "/admin-view/addproduct" && currentUpdatedProduct !== null)
       setCurrentUpdatedProduct(null);
   }, [pathName]);
-
 
   return (
     <div className="navbar">
@@ -53,16 +49,19 @@ const Navbar = () => {
       {isAuthUser ? (
         <div className="right">
           <div className="item">
-            <Link href="/product/accessories">Accessories</Link>
+            <Link href="/product/listing/allProducts">All Products</Link>
           </div>
           <div className="item">
-            <Link href="/product/shoes">Shoes</Link>
+            <Link href="/product/listing/accessories">Accessories</Link>
           </div>
           <div className="item">
-            <Link href="/product/hoodies">Hoodies</Link>
+            <Link href="/product/listing/tees">T shirts</Link>
           </div>
           <div className="item">
-            <Link href="/product/pant">Pant</Link>
+            <Link href="/product/listing/hoodies">Hoodies</Link>
+          </div>
+          <div className="item">
+            <Link href="/product/listing/cargo">Cargo</Link>
           </div>
           <div className="cartIcon">
             <Link href="/cart">

@@ -150,7 +150,7 @@ const AdminViewAddProduct = () => {
         ? await updateProduct(formData)
         : await addProduct(formData);
 
-    console.log("mimimi",resp);
+    console.log("mimimi", resp);
 
     if (resp.success) {
       setComponentLevelLoader({ loading: false, id: "" });
@@ -251,15 +251,18 @@ const AdminViewAddProduct = () => {
         onChange={inputHandle}
       >
         <option value="">--Choose an option--</option>
+        <option name="accessories" id="accessories" value="accessories">
+          Accessories
+        </option>
         <option name="tees" id="tees" value="tees">
           Tees
         </option>
         <option id="cargo" value="cargo">
           Cargo
         </option>
-        <option id="pants" value="pants">
+        {/* <option id="pants" value="pants">
           Pants
-        </option>
+        </option> */}
         <option id="hoodies" value="hoodies">
           Hoodies
         </option>
