@@ -92,3 +92,21 @@ export const produvtByCategory = async (id) => {
     console.log("errrorr while reading productBYCategory", e);
   }
 };
+
+
+
+export const producctById = async (id) => {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/admin/productById?id=${id}`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
+    const data = await res.json();
+    return data;
+  } catch (e) {
+    console.log("errrorr while reading productBYCategory", e);
+  }
+};

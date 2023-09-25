@@ -13,6 +13,7 @@
     height: 320px;
     overflow: hidden;
     position: relative;
+
 }
 
 .card .images_card img{
@@ -21,6 +22,7 @@
     /* object-fit: contain; */
     object-fit:cover;
     position: absolute;
+    cursor: pointer;
 }
 .card .images_card .mainImage{ 
     z-index: 1;

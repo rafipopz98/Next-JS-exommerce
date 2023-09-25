@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Card = ({ item }) => {
   return (
-    <Link className="link_cards" href={'/'}>
+    
       <div className="card">
         <div className="images_card">
           <img
@@ -24,7 +24,7 @@ const Card = ({ item }) => {
           <h3>${item.price-item.pDrop}</h3>
         </div>
       </div>
-    </Link>
+    
   );
 };
 

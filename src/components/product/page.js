@@ -8,38 +8,43 @@ import image1 from "../../../public/image1.jpeg";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BalanceIcon from "@mui/icons-material/Balance";
-const Product = () => {
-  const [selectedImg, setSelectedImg] = useState(0);
+const ProductDetails = ({ item }) => {
+  // const [selectedImg, setSelectedImg] = useState(0);
   const [quantity, setQuantity] = useState(1);
-  const images = [image0, image1];
+  // const images = [image0, image1];
+  // console.log(item)
 
   return (
     <div className="product_detail">
       <div className="left_prdtDtl">
-        <div className="images_prdtDtl">
-          <Image src={images[0]} onClick={(e) => setSelectedImg(0)} />
+        {/* <div className="images_prdtDtl">
+          <img src={item.image} />
+          <img src={item.image} />
           <Image src={images[1]} onClick={(e) => setSelectedImg(1)} />
-        </div>
+        </div> */}
         <div className="mainImg_prdtDtl">
-          <Image src={images[selectedImg]} />
+          <img src={item.image}  />
         </div>
       </div>
       <div className="right_prdtDtl">
-        <h1>Title</h1>
-        <span className="price_dtl">$200</span>
-        <p> 
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus enim
-          blanditiis eaque nulla optio dolorem, modi tenetur libero aliquid
-          voluptatum, illo, eum beatae rerum ipsam totam at rem cum repellat! 
-        </p>
+        <h1>{item.name}</h1>
+        {/* <span className="price_dtl">${item.price - item.pDrop}</span> */}
+        <div className="prices_cards">
+          <h3>${item.price}</h3>
+          <h3>${item.price - item.pDrop}</h3>
+        </div>
         <div className="quantity_dtl">
           <button
-            onClick={() => setQuantity((prev) => (prev === 1 ? 1 : prev - 1))}
+          // onClick={() => setQuantity((prev) => (prev === 1 ? 1 : prev - 1))}
           >
             -
           </button>
           {quantity}
-          <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
+          <button
+          // onClick={() => setQuantity((prev) => prev + 1)}
+          >
+            +
+          </button>
         </div>
         <button className="addTocart">
           <AddShoppingCartIcon /> ADD TO CART
@@ -48,26 +53,27 @@ const Product = () => {
           <div className="item_dtl">
             <FavoriteBorderIcon /> ADD TO WISHLIST
           </div>
-          <div className="item_dtl">
+          {/* <div className="item_dtl">
             <BalanceIcon /> ADD TO COMPARE
-          </div>
+          </div> */}
         </div>
-        <div className="info">
+        {/* <div className="info">
           <span>Vendor:polo</span>
           <span>Product-type:t-shirt</span>
-          <span>Tag:t-shirt,women,top</span> 
-        </div>
+          <span>Tag:t-shirt,women,top</span>
+        </div> */}
         <hr />
         <div className="info">
           <span>DESCRIPTION</span>
+          <p>{item.desc}</p>
           <hr />
-          <span>ADDITIONAL DETAILS</span>
+          {/* <span>ADDITIONAL DETAILS</span>
           <hr />
-          <span>FAQ</span>
+          <span>FAQ</span> */}
         </div>
       </div>
     </div>
   );
 };
 
-export default Product;
+export default ProductDetails;
