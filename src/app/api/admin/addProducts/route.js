@@ -1,3 +1,4 @@
+import AuthUser from "@/src/middleware/AuthUser";
 import { connectionDb } from "../../../../../src/database";
 import Products from "../../../../../src/models/product";
 
@@ -17,7 +18,6 @@ const addNewProductSchema = Joi.object({
 
 export const dynamic = "force-dynamic";
 
-
 export async function POST(req) {
   try {
     await connectionDb();
@@ -27,7 +27,10 @@ export async function POST(req) {
     // console.log(isAuthUser , 'sangam');
     const user = "admin";
 
-    if (user === "admin") {
+    const isAuthUser = await AuthUser(req);
+    console.log(isAuthUser ,"hyh");
+
+    if (isAuthUser?.roleAdmin) {
       const extractData = await req.json();
 
       const { image, name, price, desc, category, DInfo, pDrop, sizes } =
