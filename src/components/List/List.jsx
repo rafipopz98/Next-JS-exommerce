@@ -9,8 +9,8 @@ const List = ({ data }) => {
   const router=useRouter()
   return (
     <div className="lists">
-      {data.map((item) => (
-        <article key={item._id} className="ariticleList" onClick={()=>router.push(`/product/${item._id}`)}>
+      {data.map((item,id) => (
+        <article key={id} className="ariticleList" onClick={()=>router.push(`/product/${item._id}`)}>
           <Card item={item} />
           <ProductButtons item={item} />
         </article>
