@@ -5,7 +5,7 @@ const AdminViewAllProducts = async() => {
   const allAdminProducts=await getAllAdminroducts()
   return (
     <div>
-      <List data={allAdminProducts.data} />
+      <List data={allAdminProducts && allAdminProducts.data} />
     </div>
   )
 }
