@@ -8,7 +8,7 @@ import Notification from "../Notification";
 const List = ({ data }) => {
   return (
     <div className="lists">
-      {data.map((item, id) => (
+      {data?.map((item, id) => (
         <article key={id} className="ariticleList">
           <Card item={item} />
           <ProductButtons item={item} />
