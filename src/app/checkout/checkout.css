@@ -1,0 +1,269 @@
+.firstCheckout {
+    height: 100vh;
+    background-color: #E5E7EB;
+}
+
+.secondCheckout {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.thirdCheckout {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 2rem;
+    max-width: 1280px;
+}
+
+.fourthCheckout {
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.fifthCheckout {
+    display: flex;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.sisxthCheckout {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+}
+
+.seventhCheckout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.gridUndu {
+    display: grid
+}
+
+.gridSecondChckout {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 2rem;
+}
+
+.geidThirdCheckout {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 500;
+}
+
+.gridFourthCheckout {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-top: 2rem;
+    margin-top: 0.75rem;
+    margin-top: 0.875rem;
+    border-radius: 0.5rem;
+    border-width: 1px;
+    background-color: #ffffff;
+}
+
+.gridFifthCheckout {
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    background-color: #ffffff;
+}
+
+.imageGridCheckout {
+    object-fit: cover;
+    object-position: center;
+    margin: 0.5rem;
+    border-radius: 0.375rem;
+    border-width: 1px;
+    width: 7rem;
+    height: 6rem;
+}
+
+.gridSeventhCheckout {
+    display: flex;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    flex-direction: column;
+    width: 100%;
+}
+
+.shippingCheckout {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 2rem;
+    margin-top: 2.5rem;
+    background-color: #F9FAFB;
+}
+
+.shippingSecondCheckout {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 500;
+}
+
+.shippingThirdCheckout {
+    font-weight: 700;
+    color: #9CA3AF;
+}
+
+.ggggggggg {
+    border-width: 1px;
+}
+
+.pjjjjjj-6 {
+
+    padding: 1.5rem;
+}
+
+.border-rejhjhjhjhd-900 {
+    border-color: #7F1D1D;
+}
+
+.adresCheckout {
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-top: 1.5rem;
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.adresButtton {
+    display: inline-block;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    margin-top: 1.25rem;
+    margin-right: 1.25rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+    color: #ffffff;
+    text-transform: uppercase;
+    background-color: #000000;
+    cursor: pointer;
+}
+
+.totSubCheckout {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-top: 1.5rem;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
+.xxxenterItCheckout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.secondSubCheckoutTotal {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    color: #111827;
+}
+
+.thirdSubCheckoutTotal {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.lastCheckoutBtton {
+    cursor: pointer;
+    display: inline-block;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    margin-top: 1.25rem;
+    margin-right: 1.25rem;
+    width: 100%;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+    color: #ffffff;
+    text-transform: uppercase;
+    background-color: #000000;
+}
+
+@media (min-width: 640px) {
+    .secondCheckout {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .gridFourthCheckout {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    .thirdCheckout {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .fifthCheckout {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .gridUndu {
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+    }
+
+    .gridFifthCheckout {
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 1024px) {
+    .secondCheckout {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .thirdCheckout {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .gridUndu {
+        padding-left: 5rem;
+        padding-right: 5rem;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .shippingCheckout {
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 1280px) {
+    .gridUndu {
+        padding-left: 8rem;
+        padding-right: 8rem;
+    }
+}

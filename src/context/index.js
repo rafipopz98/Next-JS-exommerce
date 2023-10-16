@@ -35,9 +35,11 @@ export default function GlobalState({ children }) {
       setIsAuthUser(true);
       console.log("userrrrrrrrrrrrrrrrrrr", localStorage.getItem("user"));
       const userData = JSON.parse(localStorage.getItem("user")) || {};
+      const getCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
       // const getCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
       setUser(userData);
+      setCartItems(getCartItems);
       // setIsAdmin(Cookies.get('role'))
       console.log("userData", userData);
 
