@@ -6,6 +6,7 @@ import "./Navbar.css";
 import { GlobalContext } from "../../../src/context";
 import Cookies from "js-cookie";
 import { usePathname, useRouter } from "next/navigation";
+import CartModal from "../cartModal/Cart";
 
 const Navbar = () => {
   const {
@@ -15,6 +16,7 @@ const Navbar = () => {
     setIsAuthUser,
     currentUpdatedProduct,
     setCurrentUpdatedProduct,
+    showCartModal,
   } = useContext(GlobalContext);
   const router = useRouter();
   const logoutHandler = () => {
@@ -88,6 +90,7 @@ const Navbar = () => {
           <div className="itemu">AdminView</div>
         </Link>
       ) : null}
+      {showCartModal && <CartModal />}
     </div>
   );
 };

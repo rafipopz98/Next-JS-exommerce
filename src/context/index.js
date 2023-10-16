@@ -9,7 +9,7 @@ import { login } from "../services/login";
 export const GlobalContext = createContext(null);
 
 export default function GlobalState({ children }) {
-  const [pageLevelLoader, setPageLevelLoader] = useState(false);
+  const [pageLevelLoader, setPageLevelLoader] = useState(true);
   const [componentLevelLoader, setComponentLevelLoader] = useState({
     loading: false,
     id: "",
@@ -18,7 +18,8 @@ export default function GlobalState({ children }) {
   const [user, setUser] = useState();
   const [isAdmin, setIsAdmin] = useState();
   const [currentUpdatedProduct, setCurrentUpdatedProduct] = useState(null);
-
+  const [showCartModal, setShowCartModal] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
   useEffect(() => {
     // console.log('lol loooook',localStorage.getItem("user"))
 
@@ -55,6 +56,10 @@ export default function GlobalState({ children }) {
         setComponentLevelLoader,
         currentUpdatedProduct,
         setCurrentUpdatedProduct,
+        showCartModal,
+        setShowCartModal,
+        cartItems,
+        setCartItems,
       }}
     >
       {children}
