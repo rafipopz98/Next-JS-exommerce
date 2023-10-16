@@ -24,8 +24,8 @@ export const addProduct = async (formData) => {
 export const getAllAdminroducts = async () => {
   try {
     const responses = await fetch(
-      // "http://localhost:3000/api/admin/allProducts",
-      "https://don-quijote.netlify.app/api/admin/allProducts",
+      "http://localhost:3000/api/admin/allProducts",
+      // "https://don-quijote.netlify.app/api/admin/allProducts",
 
       {
         method: "GET",
@@ -82,8 +82,8 @@ export const deleteProduct = async (id) => {
 export const produvtByCategory = async (id) => {
   try {
     const res = await fetch(
-      // `http://localhost:3000/api/admin/productByCategory?id=${id}`,
-      `https://don-quijote.netlify.app/api/admin/productByCategory?id=${id}`,
+      `http://localhost:3000/api/admin/productByCategory?id=${id}`,
+      // `https://don-quijote.netlify.app/api/admin/productByCategory?id=${id}`,
       {
         method: "GET",
         cache: "no-store",
@@ -101,8 +101,8 @@ export const produvtByCategory = async (id) => {
 export const producctById = async (id) => {
   try {
     const res = await fetch(
-      // `http://localhost:3000/api/admin/productById?id=${id}`,
-      `https://don-quijote.netlify.app/api/admin/productById?id=${id}`,
+      `http://localhost:3000/api/admin/productById?id=${id}`,
+      // `https://don-quijote.netlify.app/api/admin/productById?id=${id}`,
       {
         method: "GET",
         cache: "no-store",

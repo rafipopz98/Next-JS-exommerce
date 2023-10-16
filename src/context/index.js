@@ -9,7 +9,7 @@ import { login } from "../services/login";
 export const GlobalContext = createContext(null);
 
 export default function GlobalState({ children }) {
-  const [pageLevelLoader, setPageLevelLoader] = useState(true);
+  const [pageLevelLoader, setPageLevelLoader] = useState(false);
   const [componentLevelLoader, setComponentLevelLoader] = useState({
     loading: false,
     id: "",
@@ -20,6 +20,14 @@ export default function GlobalState({ children }) {
   const [currentUpdatedProduct, setCurrentUpdatedProduct] = useState(null);
   const [showCartModal, setShowCartModal] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  const [addresses, setAddresses] = useState([]);
+  const [addressFormData, setAddressFormData] = useState({
+    fullName: "",
+    city: "",
+    country: "",
+    postalCode: "",
+    address: "",
+  });
   useEffect(() => {
     // console.log('lol loooook',localStorage.getItem("user"))
 
@@ -60,6 +68,10 @@ export default function GlobalState({ children }) {
         setShowCartModal,
         cartItems,
         setCartItems,
+        addresses,
+        setAddresses,
+        addressFormData,
+        setAddressFormData,
       }}
     >
       {children}

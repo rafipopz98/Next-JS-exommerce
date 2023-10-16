@@ -17,6 +17,7 @@ const Navbar = () => {
     currentUpdatedProduct,
     setCurrentUpdatedProduct,
     showCartModal,
+    setShowCartModal
   } = useContext(GlobalContext);
   const router = useRouter();
   const logoutHandler = () => {
@@ -65,14 +66,17 @@ const Navbar = () => {
           <div className="item">
             <Link href="/product/listing/cargo">Cargo</Link>
           </div>
-          <div className="cartIcon">
-            <Link href="/cart">
+          <div className="cartIcon" onClick={()=>setShowCartModal(true)}>
+            {/* <Link href="/cart"> */}
               <ShoppingCartOutlinedIcon />
               <span className="number">2</span>
-            </Link>
+            {/* </Link> */}
           </div>
           <div onClick={logoutHandler} className="item">
             Logout
+          </div>
+          <div className="item">
+            <Link href="/account">Account</Link>
           </div>
         </div>
       ) : (
