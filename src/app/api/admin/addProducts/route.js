@@ -22,9 +22,7 @@ export async function POST(req) {
   try {
     await connectionDb();
 
-    // const isAuthUser = await AuthUser(req)
-
-    // console.log(isAuthUser , 'sangam');
+    
     const user = "admin";
 
     const isAuthUser = await AuthUser(req);
