@@ -21,8 +21,8 @@ export const addToCart = async (formData) => {
 
 export const getAllCartItems = async (id) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/cart/allCart?id=${id}`, {
-    // const res = await fetch(`https://don-quijote.netlify.app/api/cart/allCart?id=${id}`, {
+    // const res = await fetch(`http://localhost:3000/api/cart/allCart?id=${id}`, {
+    const res = await fetch(`https://don-quijote.netlify.app/api/cart/allCart?id=${id}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${Cookies.get("token")}`,

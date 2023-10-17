@@ -1,3 +1,11 @@
+.uWULoader {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .accountFirst {
     padding-left: 1rem;
     padding-right: 1rem;

@@ -16,9 +16,11 @@ const Navbar = () => {
     setIsAuthUser,
     currentUpdatedProduct,
     setCurrentUpdatedProduct,
+    cartItems,
     showCartModal,
     setShowCartModal
   } = useContext(GlobalContext);
+  console.log("jdfsklglkjsdhgjldsfhgkjdsfhgkljdshflgjhdfkjghzskdjfhdh",cartItems.length)
   const router = useRouter();
   const logoutHandler = () => {
     setIsAuthUser(false);
@@ -66,10 +68,10 @@ const Navbar = () => {
           <div className="item">
             <Link href="/product/listing/cargo">Cargo</Link>
           </div>
-          <div className="cartIcon" onClick={()=>setShowCartModal(true)}>
+          <div style={{cursor:"pointer"}} className="cartIcon" onClick={()=>setShowCartModal(true)}>
             {/* <Link href="/cart"> */}
               <ShoppingCartOutlinedIcon />
-              <span className="number">2</span>
+              <span className="number">{cartItems.length}</span>
             {/* </Link> */}
           </div>
           <div onClick={logoutHandler} className="item">
