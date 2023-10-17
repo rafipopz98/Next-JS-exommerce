@@ -52,7 +52,7 @@ const Register = () => {
     setPageLevelLoader(true);
     const data = await registerNewUser(formData);
     if (data.success) {
-      router.push("/login");
+      // router.push("/login");
       toast.success(data.message, {
         position: toast.POSITION.TOP_RIGHT,
       });
@@ -119,7 +119,7 @@ const Register = () => {
           />
         </div>
         <div className="register_btn">
-          <button disabled={!isValid()} onClick={()=>handleRegisterOnSubmit}>
+          <button disabled={!isValid()} onClick={handleRegisterOnSubmit}>
             {  pageLevelLoader ? (
               <ComponentLevelLoader
                 text={""}
