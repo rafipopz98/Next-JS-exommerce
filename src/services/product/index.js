@@ -25,7 +25,8 @@ export const getAllAdminroducts = async () => {
   try {
     const responses = await fetch(
       // "http://localhost:3000/api/admin/allProducts",
-      "https://don-quijote.netlify.app/api/admin/allProducts",
+      // "https://don-quijote.netlify.app/api/admin/allProducts",
+      "https://ryuko-matoi.vercel.app/api/admin/allProducts",
 
       {
         method: "GET",
@@ -83,7 +84,8 @@ export const produvtByCategory = async (id) => {
   try {
     const res = await fetch(
       // `http://localhost:3000/api/admin/productByCategory?id=${id}`,
-      `https://don-quijote.netlify.app/api/admin/productByCategory?id=${id}`,
+      // `https://don-quijote.netlify.app/api/admin/productByCategory?id=${id}`,
+      `https://ryuko-matoi.vercel.app/api/admin/productByCategory?id=${id}`,
       {
         method: "GET",
         cache: "no-store",
@@ -102,7 +104,8 @@ export const producctById = async (id) => {
   try {
     const res = await fetch(
       // `http://localhost:3000/api/admin/productById?id=${id}`,
-      `https://don-quijote.netlify.app/api/admin/productById?id=${id}`,
+      // `https://don-quijote.netlify.app/api/admin/productById?id=${id}`,
+      `https://ryuko-matoi.vercel.app/api/admin/productById?id=${id}`,
       {
         method: "GET",
         cache: "no-store",
