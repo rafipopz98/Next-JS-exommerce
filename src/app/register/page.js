@@ -52,7 +52,7 @@ const Register = () => {
     setPageLevelLoader(true);
     const data = await registerNewUser(formData);
     if (data.success) {
-      // router.push("/login");
+      router.push("/login");
       toast.success(data.message, {
         position: toast.POSITION.TOP_RIGHT,
       });
