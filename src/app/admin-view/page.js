@@ -9,8 +9,10 @@ import {
 import { useContext, useEffect } from "react";
 import { PulseLoader } from "react-spinners";
 import "./Admin-view.css";
+import { useRouter } from "next/navigation";
 
 export default function AdminView() {
+  const router = useRouter();
   const {
     allOrdersForAllUsers,
     setAllOrdersForAllUsers,
