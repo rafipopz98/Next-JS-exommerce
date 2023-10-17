@@ -1,7 +1,6 @@
 "use client";
 
-
-import './checkout.css'
+import "./checkout.css";
 import Notification from "../../components/Notification";
 import { GlobalContext } from "../../context/index";
 import { fetchAllAddresses } from "../../services/address";
@@ -13,7 +12,6 @@ import { useContext, useEffect, useState } from "react";
 import { PulseLoader } from "react-spinners";
 import { toast } from "react-toastify";
 
-
 export default function Checkout() {
   const {
     cartItems,
@@ -22,7 +20,7 @@ export default function Checkout() {
     setAddresses,
     checkoutFormData,
     setCheckoutFormData,
-  } = useContext(GlobalContext);  
+  } = useContext(GlobalContext);
 
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [isOrderProcessing, setIsOrderProcessing] = useState(false);
@@ -205,20 +203,17 @@ export default function Checkout() {
           <div className="gridFourthCheckout">
             {cartItems && cartItems.length ? (
               cartItems.map((item) => (
-                <div
-                  className="gridFifthCheckout"
-                  key={item._id}
-                >
+                <div className="gridFifthCheckout" key={item._id}>
                   <img
                     src={item && item.productID && item.productID.image}
                     alt="Cart Item"
                     className="imageGridCheckout"
                   />
                   <div className="gridSeventhCheckout">
-                    <span style={{fontWeight:700}}>
+                    <span style={{ fontWeight: 700 }}>
                       {item && item.productID && item.productID.name}
                     </span>
-                    <span style={{fontWeight:600}}>
+                    <span style={{ fontWeight: 600 }}>
                       {item && item.productID && item.productID.price}
                     </span>
                   </div>

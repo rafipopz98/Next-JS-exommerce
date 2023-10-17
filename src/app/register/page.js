@@ -119,7 +119,7 @@ const Register = () => {
           />
         </div>
         <div className="register_btn">
-          <button disabled={!isValid()} onClick={handleRegisterOnSubmit}>
+          <button disabled={!isValid()} onClick={()=>handleRegisterOnSubmit}>
             {  pageLevelLoader ? (
               <ComponentLevelLoader
                 text={""}
