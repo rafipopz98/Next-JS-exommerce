@@ -145,54 +145,65 @@ html::-webkit-scrollbar-track {
     color: gray;
     text-decoration: line-through;
 }
-.container{
+
+.container {
     width: 900px;
     margin: auto;
     max-width: 90vw;
     text-align: center;
     padding-top: 10px;
 }
-.title{
+
+.title {
     font-size: xx-large;
     padding: 20px 0;
 }
-.listProduct .item img{
+
+.listProduct .item img {
     width: 90%;
     filter: drop-shadow(0 50px 20px #0009);
 }
-.listProduct{
+
+.listProduct {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
-.listProduct .item{
+
+.listProduct .item {
     background-color: #EEEEE6;
     padding: 20px;
     border-radius: 20px;
 }
-.listProduct .item h2{
+
+.listProduct .item h2 {
     font-weight: 500;
     font-size: large;
 }
-.listProduct .item .price{
+
+.listProduct .item .price {
     letter-spacing: 7px;
     font-size: small;
 }
+
 /* detail page */
 
-.detail{
+.detail {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 50px;
     text-align: left;
 }
-.detail .image img{
+
+.detail .image img {
     width: 100%;
 }
-.detail .image{
+
+.detail .image {
     position: relative;
 }
-.detail .image::before{
+
+/* .detail .image::before {
     position: absolute;
     width: 300px;
     height: 300px;
@@ -203,35 +214,58 @@ html::-webkit-scrollbar-track {
     left: calc(50% - 150px);
     top: 50px;
 
-}
-.detail .name{
+} */
+
+.detail .name {
     font-size: xxx-large;
     padding: 40px 0 0 0;
     margin: 0 0 10px 0;
 }
-.detail .price{
+
+.detail .price {
     font-weight: bold;
     font-size: x-large;
     letter-spacing: 7px;
     margin-bottom: 20px;
 }
-.detail .buttons{
+
+.detail .buttons {
+    
     display: flex;
     gap: 20px;
     margin-bottom: 20px;
 }
-.detail .buttons button{
+
+.detail .buttons button {
+    
     background-color: #eee;
     border: none;
     padding: 15px 20px;
     border-radius: 20px;
     font-family: Poppins;
     font-size: large;
+    display: inline-block;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    margin-top: 1.25rem;
+    margin-right: 1.25rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+    color: #ffffff;
+    text-transform: uppercase;
+    background-color: #000000;
+    cursor: pointer;
 }
-.detail .buttons svg{
+
+.detail .buttons svg {
     width: 15px;
 }
-.detail .buttons span{
+
+.detail .buttons span {
     background-color: #555454;
     width: 30px;
     height: 30px;
@@ -241,50 +275,74 @@ html::-webkit-scrollbar-track {
     border-radius: 50%;
     margin-left: 20px;
 }
-.detail .buttons button:nth-child(2){
+
+.detail .buttons button:nth-child(1) {
+    display: inline-block;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    margin-top: 1.25rem;
+    margin-right: 1.25rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+    color: #ffffff;
+    text-transform: uppercase;
+    background-color: #000000;
+    cursor: pointer;
     background-color: #2F2F2F;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
     color: #eee;
     box-shadow: 0 10px 20px #2F2F2F77;
 }
-.detail .description{
+
+.detail .description {
     font-weight: 300;
 }
+
 /* // ipad */
 @media only screen and (max-width: 992px) {
-    .listProduct{
+    .listProduct {
         grid-template-columns: repeat(3, 1fr);
     }
-    .detail{
-        grid-template-columns:  40% 1fr;
+
+    .detail {
+        grid-template-columns: 40% 1fr;
     }
 }
 
 
 /* mobile */
 @media only screen and (max-width: 768px) {
-    .listProduct{
+    .listProduct {
         grid-template-columns: repeat(2, 1fr);
     }
-    .detail{
+
+    .detail {
         text-align: center;
         grid-template-columns: 1fr;
     }
-    .detail .image img{
+
+    .detail .image img {
         width: unset;
         height: 40vh;
-    } 
-    .detail .name{ 
+    }
+
+    .detail .name {
         font-size: x-large;
         margin: 0;
 
     }
-    .detail .buttons button{
+
+    .detail .buttons button {
         font-size: small;
     }
-    .detail .buttons{
+
+    .detail .buttons {
         justify-content: center;
     }
 }

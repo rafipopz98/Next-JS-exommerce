@@ -1,6 +1,6 @@
-// "use client";
+"use client";
 // import Image from "next/image";
-// import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import "./PrdtDtl.css";
 
 // import image0 from "../../../public/image0.jpeg";
@@ -8,42 +8,15 @@ import "./PrdtDtl.css";
 // import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 // import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 // import BalanceIcon from "@mui/icons-material/Balance";
-// import { GlobalContext } from "../../context/index";
-// import Notification from "../Notification";
-// import { addToCart } from "../../services/cart";
-// import { toast } from "react-toastify";
-// import ComponentLevelLoader from "../Loader/LoaderCom/page";
+import { GlobalContext } from "../../context/index";
+import Notification from "../Notification";
+import { addToCart } from "../../services/cart";
+import { toast } from "react-toastify";
+import ComponentLevelLoader from "../Loader/LoaderCom/page";
 // const ProductDetails = ({ item }) => {
 //   // const [selectedImg, setSelectedImg] = useState(0);
 //   const [quantity, setQuantity] = useState(1);
 //   // const images = [image0, image1];
-//   const {
-//     setComponentLevelLoader,
-//     componentLevelLoader,
-//     user,
-//     setShowCartModal,
-//   } = useContext(GlobalContext);
-
-//   // console.log(item)
-//   const handleAddtocart = async (getItem) => {
-//     setComponentLevelLoader({ loading: true, id: "" });
-
-//     const res = await addToCart({ productID: getItem._id, userID: user._id });
-
-//     if (res.success) {
-//       toast.success(res.message, {
-//         position: toast.POSITION.TOP_RIGHT,
-//       });
-//       setComponentLevelLoader({ loading: false, id: "" });
-//       setShowCartModal(true);
-//     } else {
-//       toast.error(res.message, {
-//         position: toast.POSITION.TOP_RIGHT,
-//       });
-//       setComponentLevelLoader({ loading: false, id: "" });
-//       setShowCartModal(true);
-//     }
-//   };
 
 //   return (
 //     <div className="product_detail">
@@ -118,37 +91,83 @@ import "./PrdtDtl.css";
 // };
 
 // export default ProductDetails;
-import React from 'react'
+import React from "react";
 
-const page = () => {
+const ProductDetails = ({ item }) => {
+  const {
+    setComponentLevelLoader,
+    componentLevelLoader,
+    user,
+    setShowCartModal,
+  } = useContext(GlobalContext);
+
+  console.log(item);
+  const handleAddtocart = async (getItem) => {
+    setComponentLevelLoader({ loading: true, id: "" });
+
+    const res = await addToCart({ productID: getItem._id, userID: user._id });
+
+    if (res.success) {
+      toast.success(res.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setComponentLevelLoader({ loading: false, id: "" });
+      setShowCartModal(true);
+    } else {
+      toast.error(res.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setComponentLevelLoader({ loading: false, id: "" });
+      setShowCartModal(true);
+    }
+  };
   return (
     <div class="container">
-    <div class="title">PRODUCT DETAIL</div>
-    <div class="detail">
+      <div class="title">PRODUCT DETAIL</div>
+      <div class="detail">
         <div class="image">
-            <img src=""/>
+          <img src={item.image} />
         </div>
         <div class="content">
-            <h1 class="name"></h1>
-            <div class="price"></div>
-            <div class="buttons">
-                <button>Check Out</button>
-                <button>Add To Cart 
-                    <span>
-                        <svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"/>
-                        </svg>
-                    </span>
-                </button>
-            </div>
-            <div class="description"></div>
+          <h1 class="name">{item.name}</h1>
+          <div class="price">${item.price - item.pDrop}</div>
+          <div class="buttons">
+            {/* <button>Check Out</button> */}
+            <button onClick={() => handleAddtocart(item)}>
+              {componentLevelLoader && componentLevelLoader.loading ? (
+                <ComponentLevelLoader
+                  text={"Adding...."}
+                  color={"#000000"}
+                  loading={componentLevelLoader && componentLevelLoader.loading}
+                />
+              ) : (
+                "Add to Cart"
+              )}
+              {/* <span>
+                <svg
+                  class=""
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 18 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"
+                  />
+                </svg>
+              </span> */}
+            </button>
+          </div>
+          <div class="description">{item.desc}</div>
         </div>
+      </div>
+      <Notification />
     </div>
+  );
+};
 
-    <div class="title">Similar product</div>
-    <div class="listProduct"></div>
-</div>
-  )
-}
-
-export default page
+export default ProductDetails;
