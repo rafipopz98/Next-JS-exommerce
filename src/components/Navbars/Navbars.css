@@ -1,3 +1,9 @@
+:root {
+	--mainColor: #29335c;
+	--mainColorLight: #5767aa;
+	--secondaryColor: #db2b39;
+	--textColor: #eee;
+}
 header {
 	display: flex;
 	align-items: center;
@@ -6,12 +12,14 @@ header {
 	padding: 0 2rem;
 	background-color: var(--mainColor);
 	color: var(--textColor);
+	/* z-index: 100000000000000000000000; */
 }
 
 nav a {
 	margin: 0 1rem;
 	color: var(--textColor);
 	text-decoration: none;
+	/* z-index: 100000000000000000000000; */
 }
 
 nav a:hover {
