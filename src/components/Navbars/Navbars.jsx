@@ -53,7 +53,9 @@ function Navbars() {
   }, [pathName]);
   return (
     <header>
-      <h3>LOGO</h3>
+    <Link href="/">
+          <h3>Dummy app</h3>
+        </Link>
 
       <nav ref={navRef}>
         {isAuthUser ? (
