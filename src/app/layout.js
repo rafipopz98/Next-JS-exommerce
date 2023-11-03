@@ -17,20 +17,26 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link
+          rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"
+          integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS"
+          crossorigin="anonymous"
+        />
+        <link
           href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
           rel="stylesheet"
         />
       </head>
       <body className={nunito.className}>
         <GlobalState>
-        <React.Fragment>
-			<Navbars/>
-		</React.Fragment>
+          <React.Fragment>
+            <Navbars />
+          </React.Fragment>
           <main>{children}</main>
 
           <Footer />
         </GlobalState>
-      </body> 
+      </body>
     </html>
   );
 }
