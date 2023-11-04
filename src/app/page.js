@@ -1,42 +1,47 @@
-"use client";
+// "use client";
 
+import { GlobalContext } from "../context/index";
+import { getAllAdminroducts } from "../services/product/index";
+import { useRouter } from "next/navigation";
+// import { useContext, useEffect, useState } from "react";
+import "../app/register/Register.css";
+import Featured from "../components/Featured/Featured";
+import NewOnes from "../components/NewOnes/NewOnes";
 // import Featured from "../components/FeaturedProducts/Featured";
-// import Slide1 from "../components/Slider/Slide1";
-// import Categories from "../components/Categories/Categories";
-import { useContext } from "react";
-import { GlobalContext } from "../context";
-import Wrapper from "../components/Mainpage/Wrapper";
-import FlashDeals from "../components/Mainpage/FlashDeals";
-import TopCate from "../components/Mainpage/Topcate";
-import NewArrivals from "../components/Mainpage/NewArrivals";
-import Discount from "../components/Mainpage/Discount";
-import Shop from "../components/Mainpage/Shop";
-import LOGOGGOG from "../components/Mainpage/LOGOGGOG";
-import Announcement from "../components/Mainpage/Announcement";
-import { getAllAdminroducts } from "../services/product";
-// import { getAllAdminroducts } from '../../../../src/services/product'
-
- function Home() {
+export default async function Home() {
   // const { isAuthUser } = useContext(GlobalContext);
-  // const allAdminProducts = await getAllAdminroducts();
+
+  const allAdminProducts = await getAllAdminroducts();
 
   return (
-    //  <div className="home">
-    //   <Slide1 />
-    //   <Featured heading="Featured"/>
-    //   <Categories />
-    //   <Featured heading="Sale"/>
-    //  </div>
     <>
-      <LOGOGGOG />
-      {/* <FlashDeals data={allAdminProducts && allAdminProducts.data} /> */}
-      <TopCate />
-      <NewArrivals />
-      <Discount />
-      {/* <Shop /> */}
-      <Announcement />
-      <Wrapper />
+      <section className="homeSection">
+        <div className="home-text">
+          <h1>
+            Mens New <br />
+            <span>Arrival</span>
+          </h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+          <a className="home-btn" href="#">
+            View All Collections
+          </a>
+        </div>
+      </section>
+      {/* <Featured data={allAdminProducts && allAdminProducts.data} /> */}
+      <Featured />
+      <section className="cta">
+        <div className="cta-text">
+          <h6>Fall Sale</h6>
+          <h4>
+            20% OFF <br />
+            NEW ARRIVAL
+          </h4>
+          <a href="" className="home-btn">
+            Shop Now
+          </a>
+        </div>
+      </section>
+      <NewOnes data={allAdminProducts && allAdminProducts.data} />
     </>
   );
 }
-export default Home;

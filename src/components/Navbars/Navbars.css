@@ -1,9 +1,10 @@
 :root {
-	--mainColor: #29335c;
-	--mainColorLight: #5767aa;
-	--secondaryColor: #db2b39;
-	--textColor: #eee;
+	--mainColor: #f4f6ff;
+	--mainColorLight: #c9d1f0;
+	--secondaryColor: #f6d6d9;
+	--textColor: #000000;
 }
+
 header {
 	display: flex;
 	align-items: center;
